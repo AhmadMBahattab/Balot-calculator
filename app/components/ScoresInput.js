@@ -39,7 +39,6 @@ const ScoresInput = ({ firstPoint, secondPoint, addScore }) => {
           keyboardType="numeric"
           onChangeText={(value) => setfirstScore(value)}
           value={firstScore}
-          placeholder={"0"}
         />
       </View>
       <View style={styles.singleScoreInfo}>
@@ -77,7 +76,6 @@ const ScoresInput = ({ firstPoint, secondPoint, addScore }) => {
           keyboardType="numeric"
           onChangeText={(value) => setsecondScore(value)}
           value={secondScore}
-          placeholder={"0"}
         />
       </View>
     </View>

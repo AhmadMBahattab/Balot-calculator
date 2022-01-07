@@ -23,6 +23,7 @@ export default function App() {
     setsecondTeamScoreArray([0]);
     setfirstPoint(0);
     setsecondPoint(0);
+    setVisible(true);
   };
 
   const backOneStep = () => {
@@ -62,6 +63,7 @@ export default function App() {
       setsecondTeamScoreArray([0]);
       setfirstPoint(0);
       setsecondPoint(0);
+      setVisible(true);
     }
     return;
   };

@@ -28,9 +28,6 @@ const NavBar = ({ resetScores, backOneStep }) => {
       />
       <View style={styles.navBar}>
         <View style={styles.navBarInfo}>
-          <Text style={{ fontSize: 25, color: "white" }}>
-            حاسبة بلوت الاستو
-          </Text>
           <View style={styles.navBarButtons}>
             <TouchableOpacity onPress={backOneStep}>
               <FontAwesome5 name="redo" size={20} color="white" />
@@ -42,12 +39,15 @@ const NavBar = ({ resetScores, backOneStep }) => {
                 style={{
                   fontSize: 24,
                   color: "white",
-                  marginRight: windowWidth / 25,
+                  marginRight: windowWidth / 20,
                   marginLeft: windowWidth / 20,
                 }}
               />
             </TouchableOpacity>
           </View>
+          <Text style={{ fontSize: 25, color: "white" }}>
+            حاسبة بلوت الاستو
+          </Text>
         </View>
       </View>
     </>
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingTop: 30,
     backgroundColor: "#004582",
-    height: statusBarHight * 1.8,
+    height: statusBarHight * 3.5,
     justifyContent: "flex-end",
   },
   navBarInfo: {
