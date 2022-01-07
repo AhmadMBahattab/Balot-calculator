@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  StatusBar,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
-import { MaterialCommunityIcons, FontAwesome5 } from "@expo/vector-icons";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { Dimensions } from "react-native";
 import { FAB, Input } from "react-native-elements";
 
@@ -19,10 +11,7 @@ const ScoresInput = ({ firstPoint, secondPoint, addScore }) => {
   const [firstScore, setfirstScore] = useState(0);
   const [secondScore, setsecondScore] = useState(0);
 
-  //   console.log("first ", firstScore);
-  //   console.log("snd ", secondScore);
-
-  const resetPoints = () => {
+  const resetPoints = (first, second) => {
     setsecondScore(0);
     setfirstScore(0);
     console.log("why?");
@@ -33,35 +22,61 @@ const ScoresInput = ({ firstPoint, secondPoint, addScore }) => {
       <View style={styles.singleScoreInfo}>
         <Text style={styles.textInfo}>لنا</Text>
         <Text></Text>
-        <Text style={styles.textInfo}>{firstPoint}</Text>
+        {firstPoint == secondPoint ? (
+          <Text style={[styles.textInfo, { color: "black" }]}>
+            {firstPoint}
+          </Text>
+        ) : firstPoint > secondPoint ? (
+          <Text style={[styles.textInfo, { color: "green" }]}>
+            {firstPoint}
+          </Text>
+        ) : (
+          <Text style={[styles.textInfo, { color: "red" }]}>{firstPoint}</Text>
+        )}
+
         <Input
           textAlign={"center"}
           keyboardType="numeric"
           onChangeText={(value) => setfirstScore(value)}
+          value={firstScore}
           placeholder={"0"}
         />
       </View>
       <View style={styles.singleScoreInfo}>
         <Text></Text>
         <Text></Text>
-        <TouchableOpacity onPress={resetPoints}>
+        <TouchableOpacity>
           <FAB
             visible={visible}
             style={{ marginTop: 10 }}
             icon={{ name: "add", color: "white" }}
             color="#004582"
-            onPress={() => addScore(firstScore, secondScore)}
+            onPress={() => {
+              addScore(firstScore, secondScore),
+                resetPoints(firstScore, secondScore);
+            }}
           />
         </TouchableOpacity>
       </View>
       <View style={styles.singleScoreInfo}>
         <Text style={styles.textInfo}>لهم</Text>
         <Text></Text>
-        <Text style={styles.textInfo}>{secondPoint}</Text>
+        {secondPoint == firstPoint ? (
+          <Text style={[styles.textInfo, { color: "black" }]}>
+            {secondPoint}
+          </Text>
+        ) : secondPoint > firstPoint ? (
+          <Text style={[styles.textInfo, { color: "green" }]}>
+            {secondPoint}
+          </Text>
+        ) : (
+          <Text style={[styles.textInfo, { color: "red" }]}>{secondPoint}</Text>
+        )}
         <Input
           textAlign={"center"}
           keyboardType="numeric"
           onChangeText={(value) => setsecondScore(value)}
+          value={secondScore}
           placeholder={"0"}
         />
       </View>
