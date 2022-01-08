@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import NavBar from "./app/components/NavBar";
 import ScoresInput from "./app/components/ScoresInput";
+import ScoresStatusBar from "./app/components/ScoresStatusBar";
 import ScoresContainer from "./app/components/ScoresContainer";
 import ResetComponent from "./app/components/ResetComponent";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
+import NetInfo, { useNetInfo } from "@react-native-community/netinfo";
 
-const scoresArray = [];
 export default function App() {
   const [visible, setVisible] = useState(true);
 
@@ -14,6 +15,7 @@ export default function App() {
 
   const [firstPoint, setfirstPoint] = useState(0);
   const [secondPoint, setsecondPoint] = useState(0);
+  const [remainWinScore, setremainWinScore] = useState(152);
 
   const [combinedScores, setcombinedScores] = useState([]);
 
@@ -24,6 +26,7 @@ export default function App() {
     setfirstPoint(0);
     setsecondPoint(0);
     setVisible(true);
+    setremainWinScore(152);
   };
 
   const backOneStep = () => {
@@ -40,30 +43,17 @@ export default function App() {
       setsecondTeamScoreArray(secondTeamArray);
       setcombinedScores(combinedTeamsScore);
 
-      let total1 = 0;
-      for (let i = 0; i < firstTeamScoreArray.length - 1; i++) {
-        total1 += firstTeamScoreArray[i];
-      }
-      setfirstPoint(total1);
+      setfirstPoint(totalLastScoreA(firstTeamArray));
+      setsecondPoint(totalLastScoreB(secondTeamArray));
 
-      let total2 = 0;
-      for (let i = 0; i < secondTeamScoreArray.length - 1; i++) {
-        total2 += secondTeamScoreArray[i];
-      }
-      setsecondPoint(total2);
-      console.log("1st ", firstPoint);
-      console.log("snd ", secondPoint);
-      // console.log("f arr ", combinedScores);
-      // console.log("f arr ", combinedScores);
+      calculatRemainScore(
+        totalLastScoreA(firstTeamArray),
+        totalLastScoreB(secondTeamArray)
+      );
       return;
     }
     if (combinedScores.length <= 1) {
-      setcombinedScores([]);
-      setfirstTeamScoreArray([0]);
-      setsecondTeamScoreArray([0]);
-      setfirstPoint(0);
-      setsecondPoint(0);
-      setVisible(true);
+      resetScores();
     }
     return;
   };
@@ -101,6 +91,20 @@ export default function App() {
 
     return total;
   };
+  const calculatRemainScore = (total1, total2) => {
+    if (total1 > total2) {
+      setremainWinScore(152 - total1);
+      return;
+    }
+    if (total2 > total1) {
+      setremainWinScore(152 - total2);
+      return;
+    }
+    if (total1 == total2) {
+      setremainWinScore(152 - total2);
+      return;
+    }
+  };
 
   const addScore = (firstTeamPoint, secondTeamPoint) => {
     let firstTeamArray = [...firstTeamScoreArray];
@@ -130,24 +134,18 @@ export default function App() {
     setsecondTeamScoreArray(secondTeamArray);
     setcombinedScores(combinedTeamsScore);
 
-    let total1 = 0;
-    for (let i = 0; i < firstTeamArray.length; i++) {
-      total1 += firstTeamArray[i];
-    }
-    setfirstPoint(total1);
+    setfirstPoint(totalLastScoreA(firstTeamArray));
+    setsecondPoint(totalLastScoreB(secondTeamArray));
 
-    let total2 = 0;
-    for (let i = 0; i < secondTeamArray.length; i++) {
-      total2 += secondTeamArray[i];
-    }
-    setsecondPoint(total2);
+    calculatRemainScore(
+      totalLastScoreA(firstTeamArray),
+      totalLastScoreB(secondTeamArray)
+    );
   };
   const toggleOverlay = () => {
     setVisible(!visible);
   };
 
-  console.log(firstPoint);
-  console.log(secondPoint);
   return (
     <>
       {totalLastScoreA(firstTeamScoreArray) >= 152 ||
@@ -165,8 +163,10 @@ export default function App() {
         <ScoresInput
           firstPoint={firstPoint}
           secondPoint={secondPoint}
+          remainWinScore={remainWinScore}
           addScore={addScore}
         />
+        <ScoresStatusBar />
         <ScoresContainer combinedScores={combinedScores} />
       </View>
     </>

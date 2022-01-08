@@ -6,7 +6,7 @@ import { FAB, Input } from "react-native-elements";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const ScoresInput = ({ firstPoint, secondPoint, addScore }) => {
+const ScoresInput = ({ firstPoint, secondPoint, remainWinScore, addScore }) => {
   const [visible, setVisible] = useState(true);
   const [firstScore, setfirstScore] = useState(0);
   const [secondScore, setsecondScore] = useState(0);
@@ -19,7 +19,7 @@ const ScoresInput = ({ firstPoint, secondPoint, addScore }) => {
 
   return (
     <View style={styles.scoreInputContainer}>
-      <View style={styles.singleScoreInfo}>
+      <View style={styles.singleScoreInfoContainer}>
         <Text style={styles.textInfo}>لنا</Text>
         <Text></Text>
         {firstPoint == secondPoint ? (
@@ -41,10 +41,12 @@ const ScoresInput = ({ firstPoint, secondPoint, addScore }) => {
           value={firstScore}
         />
       </View>
-      <View style={styles.singleScoreInfo}>
-        <Text></Text>
-        <Text></Text>
-        <TouchableOpacity>
+      <View style={styles.singleScoreInfoContainer}>
+        <Text style={styles.singleScoreInfo}>الباقي</Text>
+        <Text style={[styles.singleScoreInfo, { color: "#005EBF" }]}>
+          {remainWinScore}
+        </Text>
+        <TouchableOpacity style={styles.singleScoreInfo}>
           <FAB
             visible={visible}
             style={{ marginTop: 10 }}
@@ -57,7 +59,7 @@ const ScoresInput = ({ firstPoint, secondPoint, addScore }) => {
           />
         </TouchableOpacity>
       </View>
-      <View style={styles.singleScoreInfo}>
+      <View style={styles.singleScoreInfoContainer}>
         <Text style={styles.textInfo}>لهم</Text>
         <Text></Text>
         {secondPoint == firstPoint ? (
@@ -83,14 +85,22 @@ const ScoresInput = ({ firstPoint, secondPoint, addScore }) => {
 };
 const styles = StyleSheet.create({
   scoreInputContainer: {
-    padding: 20,
+    padding: 10,
     justifyContent: "space-between",
     flexDirection: "row",
+    borderBottomColor: "#E3E3E3",
+    borderBottomWidth: 1,
+    borderStyle: "solid",
   },
-  singleScoreInfo: {
+  singleScoreInfoContainer: {
     alignItems: "center",
     width: windowHeight / 7,
   },
+  singleScoreInfo: {
+    marginVertical: 4,
+    fontSize: 24,
+  },
+
   textInfo: {
     fontSize: 24,
     justifyContent: "center",

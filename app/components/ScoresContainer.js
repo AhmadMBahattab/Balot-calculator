@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, ScrollView } from "react-native";
 const ScoresContainer = ({ combinedScores }) => {
   return (
     <ScrollView style={styles.scoresContainer}>
-      {combinedScores.map((item) => (
+      {combinedScores.map((item, index) => (
         <View style={styles.singleScoreContainer}>
           <View style={styles.singleScoreInfo}>
             <Text>{item.lastTotalA} +</Text>
@@ -13,7 +13,9 @@ const ScoresContainer = ({ combinedScores }) => {
             <Text>{item.totalA}</Text>
           </View>
 
-          <Text></Text>
+          <View style={styles.roundContainer}>
+            <Text style={{ fontSize: 18, color: "#004582" }}>{index + 1}</Text>
+          </View>
 
           <View style={styles.singleScoreInfo}>
             <Text>{item.lastTotalB} +</Text>
@@ -30,7 +32,7 @@ const styles = StyleSheet.create({
   scoresContainer: {
     padding: 20,
     marginBottom: 20,
-    backgroundColor: "#E8E8E8",
+    backgroundColor: "#E9E9E9",
   },
   singleScoreContainer: {
     flexDirection: "row",
@@ -43,6 +45,10 @@ const styles = StyleSheet.create({
     paddingLeft: 40,
     paddingRight: 40,
     marginBottom: 10,
+  },
+  roundContainer: {
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
