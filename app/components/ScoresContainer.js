@@ -5,7 +5,7 @@ const ScoresContainer = ({ combinedScores }) => {
   return (
     <ScrollView style={styles.scoresContainer}>
       {combinedScores.map((item, index) => (
-        <View style={styles.singleScoreContainer}>
+        <View key={index} style={styles.singleScoreContainer}>
           <View style={styles.singleScoreInfo}>
             <Text>{item.lastTotalA} +</Text>
             <Text>{item.teamA}</Text>
