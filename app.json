@@ -4,9 +4,9 @@
     "slug": "Balot-calculator",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./app/assets/icon.png",
+    "icon": "./app/assets/icons8-calculator-50.png",
     "splash": {
-      "image": "./app/assets/splash.png",
+      "image": "./app/assets/dark-blue-nawpic-6-500x889.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
