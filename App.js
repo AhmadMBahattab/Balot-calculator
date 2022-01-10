@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { AppLoading } from "expo";
 import NavBar from "./app/components/NavBar";
 import ScoresInput from "./app/components/ScoresInput";
 import ScoresStatusBar from "./app/components/ScoresStatusBar";
@@ -111,9 +112,11 @@ export default function App() {
     let secondTeamArray = [...secondTeamScoreArray];
     let combinedTeamsScore = [...combinedScores];
 
-    if (!firstTeamPoint || !secondTeamPoint) {
-      alert("حط 0 على الاقل , لا تخلي اي نتيجه فاضي");
-      return;
+    if (firstTeamPoint == "") {
+      firstTeamPoint = 0;
+    }
+    if (secondTeamPoint == "") {
+      secondTeamPoint = 0;
     }
     let num1 = parseInt(firstTeamPoint);
     let num2 = parseInt(secondTeamPoint);
