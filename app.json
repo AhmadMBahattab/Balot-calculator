@@ -22,7 +22,7 @@
       "permissions": [],
       "versionCode": 1,
       "adaptiveIcon": {
-        "foregroundImage": "./app/assets/adaptive-icon.png",
+        "foregroundImage": "./app/assets/appstore.png",
         "backgroundColor": "#FFFFFF"
       }
     },
