@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "Balot-calculator",
+    "name": "S2-Balot-calculator",
     "slug": "Balot-calculator",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./app/assets/icons8-calculator-50.png",
     "splash": {
-      "image": "./app/assets/dark-blue-nawpic-6-500x889.jpg",
+      "image": "./app/assets/5531027.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -18,6 +18,9 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.xPyZzAx.S2BalotCalculator",
+      "permissions": [],
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"

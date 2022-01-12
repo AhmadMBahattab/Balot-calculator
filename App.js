@@ -6,7 +6,6 @@ import ScoresStatusBar from "./app/components/ScoresStatusBar";
 import ScoresContainer from "./app/components/ScoresContainer";
 import ResetComponent from "./app/components/ResetComponent";
 import { StyleSheet, View, Text } from "react-native";
-import NetInfo, { useNetInfo } from "@react-native-community/netinfo";
 
 export default function App() {
   const [visible, setVisible] = useState(true);
