@@ -14,7 +14,6 @@ const ScoresInput = ({ firstPoint, secondPoint, remainWinScore, addScore }) => {
   const resetPoints = (first, second) => {
     setsecondScore(0);
     setfirstScore(0);
-    console.log("why?");
   };
 
   return (

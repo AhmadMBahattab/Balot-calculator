@@ -45,7 +45,7 @@ const NavBar = ({ resetScores, backOneStep }) => {
               />
             </TouchableOpacity>
           </View>
-          <Text style={{ fontSize: 25, color: "white" }}>
+          <Text style={{ fontSize: 20, color: "white" }}>
             حاسبة بلوت الاستو
           </Text>
         </View>
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingTop: 30,
     backgroundColor: "#004582",
-    height: statusBarHight * 3.5,
+    height: statusBarHight * 2.5,
     justifyContent: "flex-end",
   },
   navBarInfo: {

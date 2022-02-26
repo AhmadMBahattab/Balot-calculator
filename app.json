@@ -7,7 +7,7 @@
     "icon": "./app/assets/icons8-calculator-50.png",
     "splash": {
       "image": "./app/assets/5531027.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {
@@ -20,9 +20,9 @@
     "android": {
       "package": "com.xPyZzAx.S2BalotCalculator",
       "permissions": [],
-      "versionCode": 1,
+      "versionCode": 2,
       "adaptiveIcon": {
-        "foregroundImage": "./app/assets/appstore.png",
+        "foregroundImage": "./app/assets/playstore.png",
         "backgroundColor": "#FFFFFF"
       }
     },
