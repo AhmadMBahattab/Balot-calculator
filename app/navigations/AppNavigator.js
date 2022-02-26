@@ -3,13 +3,26 @@ import { View, Text } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import MainScreen from "../screens/MainScreen";
 import RandomPlayers from "../screens/RandomPlayers";
-import { AntDesign, FontAwesome } from "@expo/vector-icons";
+import {
+  AntDesign,
+  FontAwesome,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 
 const Drawer = createDrawerNavigator();
 const AppNavigator = () => {
   return (
     <Drawer.Navigator
-      defaultScreenOptions={{ drawerIcon: <AntDesign name="home" /> }}
+      screenOptions={({ navigation }) => ({
+        headerLeft: () => (
+          <MaterialCommunityIcons
+            name="menu"
+            size={24}
+            color="white"
+            onPress={navigation.toggleDrawer}
+          />
+        ),
+      })}
     >
       <Drawer.Screen
         name="الحاسبة"
