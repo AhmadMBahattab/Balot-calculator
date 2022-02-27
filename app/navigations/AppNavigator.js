@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import MainScreen from "../screens/MainScreen";
 import RandomPlayers from "../screens/RandomPlayers";
@@ -15,12 +15,11 @@ const AppNavigator = () => {
     <Drawer.Navigator
       screenOptions={({ navigation }) => ({
         headerLeft: () => (
-          <MaterialCommunityIcons
-            name="menu"
-            size={24}
-            color="white"
-            onPress={navigation.toggleDrawer}
-          />
+          <TouchableWithoutFeedback onPress={navigation.toggleDrawer}>
+            <View style={styles.drawerButton}>
+              <MaterialCommunityIcons name="menu" size={30} color="white" />
+            </View>
+          </TouchableWithoutFeedback>
         ),
       })}
     >
@@ -51,5 +50,11 @@ const AppNavigator = () => {
     </Drawer.Navigator>
   );
 };
+
+const styles = StyleSheet.create({
+  drawerButton: {
+    padding: 10,
+  },
+});
 
 export default AppNavigator;
