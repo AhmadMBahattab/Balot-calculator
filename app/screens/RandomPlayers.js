@@ -28,7 +28,6 @@ const RandomPlayers = () => {
     }
 
     newArray.push({
-      id: playersArray.length + 1,
       name: playerName,
     });
     setplayerName("");
@@ -36,6 +35,14 @@ const RandomPlayers = () => {
     console.log(playersArray.length);
   };
 
+  const deletePlayer = (player) => {
+    let newArray = [...playersArray];
+    console.log(player);
+    newArray = newArray.filter((value) => {
+      return value.name != player.name;
+    });
+    setplayersArray(newArray);
+  };
   return (
     <>
       <TouchableOpacity>
@@ -68,11 +75,11 @@ const RandomPlayers = () => {
         </View>
       </View>
       <ScrollView style={styles.playersNames}>
-        {playersArray.map((item) => (
+        {playersArray.map((item, index) => (
           <View style={styles.singlePlayerContainer}>
-            <View>
+            <View key={item.id}>
               <Text style={{ fontSize: 18, marginTop: 5 }}>
-                {item.id} : {item.name}
+                {index + 1} : {item.name}
               </Text>
             </View>
 
@@ -81,6 +88,7 @@ const RandomPlayers = () => {
                 icon={{ name: "delete", color: "white" }}
                 size="small"
                 color="red"
+                onPress={() => deletePlayer(item)}
               />
             </View>
           </View>
@@ -96,6 +104,7 @@ const RandomPlayers = () => {
     </>
   );
 };
+
 const styles = StyleSheet.create({
   quickButton: {
     margin: 20,
