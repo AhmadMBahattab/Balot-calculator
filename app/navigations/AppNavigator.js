@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import MainScreen from "../screens/MainScreen";
-import RandomPlayers from "../screens/RandomPlayers";
+import RandomPlayersScreen from "../screens/RandomPlayersScreen";
 import {
   AntDesign,
   FontAwesome,

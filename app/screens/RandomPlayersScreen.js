@@ -7,14 +7,13 @@ import {
   Dimensions,
 } from "react-native";
 import React, { useState } from "react";
-import { Input, Button, FAB } from "react-native-elements";
-
+import { Input, FAB } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const RandomPlayers = () => {
+const RandomPlayersScreen = () => {
   const [playersArray, setplayersArray] = useState([]);
   const [playerName, setplayerName] = useState("");
   const [teams, setteams] = useState(null);
@@ -84,8 +83,8 @@ const RandomPlayers = () => {
       </View>
       <ScrollView style={styles.playersNames}>
         {playersArray.map((item, index) => (
-          <View style={styles.singlePlayerContainer}>
-            <View key={item.id}>
+          <View style={styles.singlePlayerContainer} key={item.id}>
+            <View>
               <Text style={{ fontSize: 18, marginTop: 5 }}>{item.name}</Text>
             </View>
 
@@ -166,4 +165,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RandomPlayers;
+export default RandomPlayersScreen;
