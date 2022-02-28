@@ -4,10 +4,14 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
+  Dimensions,
 } from "react-native";
 import React, { useState } from "react";
 import { Input, Button, FAB } from "react-native-elements";
 import { FontAwesome } from "@expo/vector-icons";
+
+const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
 
 const RandomPlayers = () => {
   const [playersArray, setplayersArray] = useState([]);
@@ -57,7 +61,7 @@ const RandomPlayers = () => {
         <View style={styles.addNameContainer}>
           <FAB
             icon={{ name: "add", color: "white" }}
-            size="small"
+            size="large"
             color="#004582"
             onPress={addPlayer}
           />
@@ -65,14 +69,20 @@ const RandomPlayers = () => {
       </View>
       <ScrollView style={styles.playersNames}>
         {playersArray.map((item) => (
-          <View
-            style={{ justifyContent: "space-between", flexDirection: "row" }}
-          >
-            <Text>ss</Text>
-            <Text style={{ fontSize: 20, marginTop: 5 }}>
-              {item.id} : {item.name}
-            </Text>
-            <View></View>
+          <View style={styles.singlePlayerContainer}>
+            <View>
+              <Text style={{ fontSize: 18, marginTop: 5 }}>
+                {item.id} : {item.name}
+              </Text>
+            </View>
+
+            <View>
+              <FAB
+                icon={{ name: "delete", color: "white" }}
+                size="small"
+                color="red"
+              />
+            </View>
           </View>
         ))}
       </ScrollView>
@@ -104,6 +114,20 @@ const styles = StyleSheet.create({
   },
   playersNames: {
     padding: 20,
+    paddingTop: 30,
+    paddingBottom: 30,
+    height: windowHeight / 2.5,
+  },
+  singlePlayerContainer: {
+    marginTop: 5,
+    marginBottom: 5,
+    padding: 10,
+    paddingLeft: 15,
+    backgroundColor: "white",
+    width: "100%",
+    borderRadius: 20,
+    justifyContent: "space-between",
+    flexDirection: "row",
   },
   setTeamsButtonContainer: {
     flex: 1,
