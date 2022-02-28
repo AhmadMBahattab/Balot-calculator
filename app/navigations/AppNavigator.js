@@ -8,6 +8,7 @@ import {
   FontAwesome,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
+import RandomPlayersNavigator from "./RandomPlayersNavigator";
 
 const Drawer = createDrawerNavigator();
 const AppNavigator = () => {
@@ -36,7 +37,7 @@ const AppNavigator = () => {
       />
       <Drawer.Screen
         name="دقة الولد"
-        component={RandomPlayers}
+        component={RandomPlayersNavigator}
         options={{
           headerStyle: {
             backgroundColor: "#004582",

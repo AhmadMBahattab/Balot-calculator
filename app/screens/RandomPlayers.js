@@ -8,7 +8,8 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { Input, Button, FAB } from "react-native-elements";
-import { FontAwesome } from "@expo/vector-icons";
+
+import { useNavigation } from "@react-navigation/native";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -16,16 +17,15 @@ const windowHeight = Dimensions.get("window").height;
 const RandomPlayers = () => {
   const [playersArray, setplayersArray] = useState([]);
   const [playerName, setplayerName] = useState("");
+  const [teams, setteams] = useState(null);
+  const navigation = useNavigation();
+
   const addPlayer = () => {
     const newArray = [...playersArray];
 
-    if (playerName.length < 1) {
-      return;
-    }
+    if (playerName.length < 1) return;
 
-    if (playersArray.length >= 10) {
-      return;
-    }
+    if (playersArray.length >= 10) return;
 
     newArray.push({
       name: playerName,
@@ -43,9 +43,14 @@ const RandomPlayers = () => {
     });
     setplayersArray(newArray);
   };
+
   return (
     <>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate("دقة ولد سريعة");
+        }}
+      >
         <View style={styles.quickButton}>
           <Text style={{ color: "white", fontSize: 18 }}>دقة ولد سريعة</Text>
         </View>
@@ -74,13 +79,14 @@ const RandomPlayers = () => {
           />
         </View>
       </View>
+      <View style={{ paddingLeft: 20 }}>
+        <Text>عدد المشاركين : {playersArray.length}</Text>
+      </View>
       <ScrollView style={styles.playersNames}>
         {playersArray.map((item, index) => (
           <View style={styles.singlePlayerContainer}>
             <View key={item.id}>
-              <Text style={{ fontSize: 18, marginTop: 5 }}>
-                {index + 1} : {item.name}
-              </Text>
+              <Text style={{ fontSize: 18, marginTop: 5 }}>{item.name}</Text>
             </View>
 
             <View>
@@ -95,8 +101,16 @@ const RandomPlayers = () => {
         ))}
       </ScrollView>
       <View style={styles.setTeamsButtonContainer}>
-        <TouchableOpacity>
-          <View style={styles.quickButton}>
+        <TouchableOpacity disabled={playersArray.length < 4 ? true : false}>
+          <View
+            style={[
+              styles.chooseTeamesButton,
+              {
+                backgroundColor:
+                  playersArray.length < 4 ? "#496883" : "#004582",
+              },
+            ]}
+          >
             <Text style={{ color: "white", fontSize: 18 }}>دقة الولد</Text>
           </View>
         </TouchableOpacity>
@@ -141,6 +155,14 @@ const styles = StyleSheet.create({
   setTeamsButtonContainer: {
     flex: 1,
     justifyContent: "flex-end",
+  },
+  chooseTeamesButton: {
+    margin: 20,
+    backgroundColor: "#004512",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 40,
+    borderRadius: 15,
   },
 });
 
