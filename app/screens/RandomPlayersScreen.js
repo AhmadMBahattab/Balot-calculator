@@ -17,7 +17,7 @@ const RandomPlayersScreen = () => {
   const [playersArray, setplayersArray] = useState([]);
   const [playerName, setplayerName] = useState("");
   const [visible, setVisible] = useState(false);
-  const [teams, setteams] = useState(null);
+  const [teams, setteams] = useState([]);
   const navigation = useNavigation();
 
   const addPlayer = () => {
@@ -54,7 +54,7 @@ const RandomPlayersScreen = () => {
 
     while (i <= 4) {
       random = Math.floor(Math.random() * newArray.length);
-      player = newArray[random];
+      player = newArray[random].name;
       if (randomTeams.includes(player) === false) {
         randomTeams.push(player);
         i++;
@@ -62,6 +62,8 @@ const RandomPlayersScreen = () => {
     }
 
     console.log(122, randomTeams);
+    setteams(randomTeams);
+    setVisible(!visible);
   };
   const toggleOverlay = () => {
     setVisible(!visible);
@@ -102,8 +104,23 @@ const RandomPlayersScreen = () => {
           />
         </View>
       </View>
-      <View style={{ paddingLeft: 20 }}>
-        <Text>عدد المشاركين : {playersArray.length}</Text>
+      <View style={{ padding: 20 }}>
+        <Text>
+          عدد المشاركين :{" "}
+          {
+            <Text
+              style={{
+                fontSize: 16,
+                color:
+                  playersArray.length < 4 || playersArray.length > 10
+                    ? "red"
+                    : "green",
+              }}
+            >
+              {playersArray.length}
+            </Text>
+          }
+        </Text>
       </View>
       <ScrollView style={styles.playersNames}>
         {playersArray.map((item, index) => (
@@ -126,14 +143,14 @@ const RandomPlayersScreen = () => {
       <View style={styles.setTeamsButtonContainer}>
         <TouchableOpacity
           onPress={setTeamsRandom}
-          disabled={playersArray.length < 0 ? true : false}
+          disabled={playersArray.length < 4 ? true : false}
         >
           <View
             style={[
               styles.chooseTeamesButton,
               {
                 backgroundColor:
-                  playersArray.length < 0 ? "#496883" : "#004582",
+                  playersArray.length < 4 ? "#496883" : "#004582",
               },
             ]}
           >
@@ -144,13 +161,17 @@ const RandomPlayersScreen = () => {
       <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
         <View style={styles.teamsContainer}>
           <View style={styles.teamA}>
-            <Text style={styles.teamATitle}>Team A</Text>
+            <Text style={styles.teamATitle}>الفريق 2</Text>
+            <Text style={{ marginTop: 5 }}>{teams[0]}</Text>
+            <Text style={{ marginTop: 5 }}>{teams[1]}</Text>
           </View>
           <View>
             <Text></Text>
           </View>
           <View style={styles.teamB}>
-            <Text style={styles.teamBTitle}>Team B</Text>
+            <Text style={styles.teamBTitle}>الفريق 1</Text>
+            <Text style={{ marginTop: 5 }}>{teams[2]}</Text>
+            <Text style={{ marginTop: 5 }}>{teams[3]}</Text>
           </View>
         </View>
       </Overlay>
@@ -204,25 +225,26 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   teamsContainer: {
-    padding: 20,
+    padding: 10,
     justifyContent: "space-between",
     flexDirection: "row",
-    backgroundColor: "red",
     width: windowWidth / 1.5,
   },
   teamA: {
-    padding: 20,
+    padding: 10,
   },
   teamB: {
-    padding: 20,
+    padding: 10,
   },
   teamATitle: {
     borderBottomColor: "black",
     borderBottomWidth: 1,
+    fontSize: 20,
   },
   teamBTitle: {
     borderBottomColor: "black",
     borderBottomWidth: 1,
+    fontSize: 20,
   },
 });
 
