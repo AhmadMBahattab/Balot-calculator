@@ -59,10 +59,11 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     backgroundColor: "#004582",
     height: statusBarHight * 2.5,
-    justifyContent: "flex-end",
+    justifyContent: "center",
+    alignContent: "center",
   },
   navBarInfo: {
-    marginTop: 10,
+    margin: 10,
     flexDirection: "row",
     justifyContent: "space-between",
   },
