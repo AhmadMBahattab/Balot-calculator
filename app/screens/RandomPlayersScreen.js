@@ -7,7 +7,7 @@ import {
   Dimensions,
 } from "react-native";
 import React, { useState } from "react";
-import { Input, FAB } from "react-native-elements";
+import { Input, FAB, Overlay } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 
 const windowWidth = Dimensions.get("window").width;
@@ -16,6 +16,7 @@ const windowHeight = Dimensions.get("window").height;
 const RandomPlayersScreen = () => {
   const [playersArray, setplayersArray] = useState([]);
   const [playerName, setplayerName] = useState("");
+  const [visible, setVisible] = useState(false);
   const [teams, setteams] = useState(null);
   const navigation = useNavigation();
 
@@ -41,6 +42,29 @@ const RandomPlayersScreen = () => {
       return value.name != player.name;
     });
     setplayersArray(newArray);
+  };
+
+  const setTeamsRandom = () => {
+    let randomTeams = [];
+    let newArray = [...playersArray];
+    let player = "";
+    let i = 1;
+
+    let random = Math.floor(Math.random() * newArray.length);
+
+    while (i <= 4) {
+      random = Math.floor(Math.random() * newArray.length);
+      player = newArray[random];
+      if (randomTeams.includes(player) === false) {
+        randomTeams.push(player);
+        i++;
+      }
+    }
+
+    console.log(122, randomTeams);
+  };
+  const toggleOverlay = () => {
+    setVisible(!visible);
   };
 
   return (
@@ -100,13 +124,16 @@ const RandomPlayersScreen = () => {
         ))}
       </ScrollView>
       <View style={styles.setTeamsButtonContainer}>
-        <TouchableOpacity disabled={playersArray.length < 4 ? true : false}>
+        <TouchableOpacity
+          onPress={setTeamsRandom}
+          disabled={playersArray.length < 0 ? true : false}
+        >
           <View
             style={[
               styles.chooseTeamesButton,
               {
                 backgroundColor:
-                  playersArray.length < 4 ? "#496883" : "#004582",
+                  playersArray.length < 0 ? "#496883" : "#004582",
               },
             ]}
           >
@@ -114,6 +141,19 @@ const RandomPlayersScreen = () => {
           </View>
         </TouchableOpacity>
       </View>
+      <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
+        <View style={styles.teamsContainer}>
+          <View style={styles.teamA}>
+            <Text style={styles.teamATitle}>Team A</Text>
+          </View>
+          <View>
+            <Text></Text>
+          </View>
+          <View style={styles.teamB}>
+            <Text style={styles.teamBTitle}>Team B</Text>
+          </View>
+        </View>
+      </Overlay>
     </>
   );
 };
@@ -162,6 +202,27 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: 40,
     borderRadius: 15,
+  },
+  teamsContainer: {
+    padding: 20,
+    justifyContent: "space-between",
+    flexDirection: "row",
+    backgroundColor: "red",
+    width: windowWidth / 1.5,
+  },
+  teamA: {
+    padding: 20,
+  },
+  teamB: {
+    padding: 20,
+  },
+  teamATitle: {
+    borderBottomColor: "black",
+    borderBottomWidth: 1,
+  },
+  teamBTitle: {
+    borderBottomColor: "black",
+    borderBottomWidth: 1,
   },
 });
 
