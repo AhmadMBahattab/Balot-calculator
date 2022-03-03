@@ -211,34 +211,6 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 15,
   },
-  overlayExitButton: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    margin: 10,
-  },
-  teamsContainer: {
-    padding: 15,
-    justifyContent: "space-between",
-    flexDirection: "row",
-    width: windowWidth / 1.5,
-  },
-  team: {
-    padding: 10,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "white",
-    borderRadius: 15,
-  },
-
-  teamTitle: {
-    borderBottomColor: "gray",
-    borderBottomWidth: 1,
-    fontSize: 20,
-    justifyContent: "center",
-    alignItems: "center",
-    fontWeight: "bold",
-    color: "#004512",
-  },
 });
 
 export default RandomPlayersScreen;
