@@ -9,6 +9,7 @@ import {
 import React, { useState } from "react";
 import { Input, FAB, Overlay } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
+import RandomTeamsContainer from "../components/randomTeamsContainer";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -91,7 +92,7 @@ const RandomPlayersScreen = () => {
               setplayerName(name);
             }}
             value={playerName}
-            maxLength={15}
+            maxLength={10}
           />
         </View>
 
@@ -158,22 +159,8 @@ const RandomPlayersScreen = () => {
           </View>
         </TouchableOpacity>
       </View>
-      <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
-        <View style={styles.teamsContainer}>
-          <View style={styles.teamA}>
-            <Text style={styles.teamATitle}>الفريق 2</Text>
-            <Text style={{ marginTop: 5 }}>{teams[0]}</Text>
-            <Text style={{ marginTop: 5 }}>{teams[1]}</Text>
-          </View>
-          <View>
-            <Text></Text>
-          </View>
-          <View style={styles.teamB}>
-            <Text style={styles.teamBTitle}>الفريق 1</Text>
-            <Text style={{ marginTop: 5 }}>{teams[2]}</Text>
-            <Text style={{ marginTop: 5 }}>{teams[3]}</Text>
-          </View>
-        </View>
+      <Overlay isVisible={visible}>
+        <RandomTeamsContainer teams={teams} toggleOverlay={toggleOverlay} />
       </Overlay>
     </>
   );
@@ -203,7 +190,7 @@ const styles = StyleSheet.create({
   },
   singlePlayerContainer: {
     marginTop: 5,
-    marginBottom: 5,
+    marginBottom: 10,
     padding: 10,
     paddingLeft: 15,
     backgroundColor: "white",
@@ -224,27 +211,33 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 15,
   },
+  overlayExitButton: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    margin: 10,
+  },
   teamsContainer: {
-    padding: 10,
+    padding: 15,
     justifyContent: "space-between",
     flexDirection: "row",
     width: windowWidth / 1.5,
   },
-  teamA: {
+  team: {
     padding: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "white",
+    borderRadius: 15,
   },
-  teamB: {
-    padding: 10,
-  },
-  teamATitle: {
-    borderBottomColor: "black",
+
+  teamTitle: {
+    borderBottomColor: "gray",
     borderBottomWidth: 1,
     fontSize: 20,
-  },
-  teamBTitle: {
-    borderBottomColor: "black",
-    borderBottomWidth: 1,
-    fontSize: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    fontWeight: "bold",
+    color: "#004512",
   },
 });
 
