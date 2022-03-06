@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import MainScreen from "../screens/MainScreen";
 import RandomPlayersScreen from "../screens/RandomPlayersScreen";
+import CustomDrawer from "../components/CustomDrawer";
 import {
   AntDesign,
   FontAwesome,
@@ -14,6 +15,7 @@ const Drawer = createDrawerNavigator();
 const AppNavigator = () => {
   return (
     <Drawer.Navigator
+      drawerContent={(props) => <CustomDrawer {...props} />}
       screenOptions={({ navigation }) => ({
         headerLeft: () => (
           <TouchableWithoutFeedback onPress={navigation.toggleDrawer}>
