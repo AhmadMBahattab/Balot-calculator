@@ -120,6 +120,10 @@ const MainScreen = () => {
     let secondTeamArray = [...secondTeamScoreArray];
     let combinedTeamsScore = [...combinedScores];
 
+    if (firstTeamPoint == "" && secondTeamPoint == "") {
+      return console.log("nothing");
+    }
+
     if (firstTeamPoint !== " " && firstTeamPoint.length > 0) {
       let firstCharecter = firstTeamPoint.split("")[0];
       if (firstCharecter == "," || firstCharecter == ".") {

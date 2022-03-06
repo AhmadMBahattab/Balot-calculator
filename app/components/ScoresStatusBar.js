@@ -6,7 +6,7 @@ const ScoresStatusBar = () => {
     <>
       <View style={styles.container}>
         <View style={styles.singleStatus}>
-          <Text style={{ fontSize: 20 }}>اللفة </Text>
+          <Text style={{ fontSize: 20 }}>الجولة </Text>
         </View>
       </View>
     </>
@@ -24,7 +24,8 @@ const styles = StyleSheet.create({
   },
   singleStatus: {
     backgroundColor: "white",
-    padding: 10,
+    padding: 15,
+    borderRadius: 10,
   },
 });
 

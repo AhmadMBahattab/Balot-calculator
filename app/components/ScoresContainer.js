@@ -1,6 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
-
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  ImageBackground,
+} from "react-native";
+const background = require("../assets/2222.png");
 const ScoresContainer = ({ combinedScores }) => {
   return (
     <ScrollView style={styles.scoresContainer}>

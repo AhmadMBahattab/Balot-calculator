@@ -46,6 +46,7 @@ const ScoresInput = ({ firstPoint, secondPoint, remainWinScore, addScore }) => {
               keyboardType="numeric"
               onChangeText={(value) => setfirstScore(value)}
               value={firstScore}
+              maxLength={2}
             />
           </View>
           <View style={styles.singleScoreInfoContainer}>
@@ -87,6 +88,7 @@ const ScoresInput = ({ firstPoint, secondPoint, remainWinScore, addScore }) => {
               keyboardType="numeric"
               onChangeText={(value) => setsecondScore(value)}
               value={secondScore}
+              maxLength={2}
             />
           </View>
         </>
@@ -114,6 +116,7 @@ const ScoresInput = ({ firstPoint, secondPoint, remainWinScore, addScore }) => {
               keyboardType="numeric"
               onChangeText={(value) => setfirstScore(value)}
               value={firstScore}
+              maxLength={2}
             />
           </View>
           <View style={styles.singleScoreInfoContainer}>
@@ -155,6 +158,7 @@ const ScoresInput = ({ firstPoint, secondPoint, remainWinScore, addScore }) => {
               keyboardType="numeric"
               onChangeText={(value) => setsecondScore(value)}
               value={secondScore}
+              maxLength={2}
             />
           </View>
         </>
