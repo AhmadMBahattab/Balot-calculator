@@ -1,16 +1,24 @@
-import { View, StyleSheet, Keyboard, ToastAndroid } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Keyboard,
+  ToastAndroid,
+  NativeModules,
+  NativeModule,
+} from "react-native";
 import React, { useState, useRef } from "react";
 import DropdownAlert from "react-native-dropdownalert";
+import * as Device from "expo-device";
+import * as Localization from "expo-localization";
 import NavBar from "../components/NavBar";
 import ScoresInput from "../components/ScoresInput";
 import ScoresStatusBar from "../components/ScoresStatusBar";
 import ScoresContainer from "../components/ScoresContainer";
 import ResetComponent from "../components/ResetComponent";
-
+// en-US
+// ar-EG
 const MainScreen = () => {
-  let dropDownAlertRef = useRef();
   const [visible, setVisible] = useState(true);
-
   const [firstTeamScoreArray, setfirstTeamScoreArray] = useState([0]);
   const [secondTeamScoreArray, setsecondTeamScoreArray] = useState([0]);
 

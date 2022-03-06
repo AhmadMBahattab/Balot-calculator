@@ -19,16 +19,16 @@ const RandomTeamsContainer = ({ teams, toggleOverlay }) => {
       <View style={styles.teamsContainer}>
         <View style={styles.team}>
           <Text style={styles.teamTitle}>الفريق 2</Text>
-          <Text style={{ marginTop: 5 }}>{teams[0]}</Text>
-          <Text style={{ marginTop: 5 }}>{teams[1]}</Text>
+          <Text style={{ marginTop: 5, fontSize: 18 }}>{teams[0]}</Text>
+          <Text style={{ marginTop: 5, fontSize: 18 }}>{teams[1]}</Text>
         </View>
         <View>
           <Text></Text>
         </View>
         <View style={styles.team}>
           <Text style={styles.teamTitle}>الفريق 1</Text>
-          <Text style={{ marginTop: 5 }}>{teams[2]}</Text>
-          <Text style={{ marginTop: 5 }}>{teams[3]}</Text>
+          <Text style={{ marginTop: 5, fontSize: 18 }}>{teams[2]}</Text>
+          <Text style={{ marginTop: 5, fontSize: 18 }}>{teams[3]}</Text>
         </View>
       </View>
     </View>
@@ -52,10 +52,10 @@ const styles = StyleSheet.create({
     padding: 15,
     justifyContent: "space-between",
     flexDirection: "row",
-    width: windowWidth / 1.5,
+    width: windowWidth / 1.2,
   },
   team: {
-    padding: 10,
+    padding: 20,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "white",
