@@ -17,18 +17,26 @@ const RandomTeamsContainer = ({ teams, toggleOverlay }) => {
         />
       </View>
       <View style={styles.teamsContainer}>
-        <View style={styles.team}>
+        <View style={[styles.team, { backgroundColor: "#8ED1FC" }]}>
           <Text style={styles.teamTitle}>الفريق 2</Text>
-          <Text style={{ marginTop: 5, fontSize: 18 }}>{teams[0]}</Text>
-          <Text style={{ marginTop: 5, fontSize: 18 }}>{teams[1]}</Text>
+          <Text style={{ marginTop: 5, fontSize: 18, color: "white" }}>
+            {teams[0]}
+          </Text>
+          <Text style={{ marginTop: 5, fontSize: 18, color: "white" }}>
+            {teams[1]}
+          </Text>
         </View>
         <View>
           <Text></Text>
         </View>
-        <View style={styles.team}>
+        <View style={[styles.team, { backgroundColor: "#F96637" }]}>
           <Text style={styles.teamTitle}>الفريق 1</Text>
-          <Text style={{ marginTop: 5, fontSize: 18 }}>{teams[2]}</Text>
-          <Text style={{ marginTop: 5, fontSize: 18 }}>{teams[3]}</Text>
+          <Text style={{ marginTop: 5, fontSize: 18, color: "white" }}>
+            {teams[2]}
+          </Text>
+          <Text style={{ marginTop: 5, fontSize: 18, color: "white" }}>
+            {teams[3]}
+          </Text>
         </View>
       </View>
     </View>
@@ -63,13 +71,13 @@ const styles = StyleSheet.create({
   },
 
   teamTitle: {
-    borderBottomColor: "gray",
+    borderBottomColor: "black",
     borderBottomWidth: 1,
     fontSize: 20,
     justifyContent: "center",
     alignItems: "center",
     fontWeight: "bold",
-    color: "#004512",
+    color: "white",
   },
 });
 export default RandomTeamsContainer;
