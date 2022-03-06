@@ -1,5 +1,6 @@
-import { View, StyleSheet, Keyboard } from "react-native";
-import React, { useState } from "react";
+import { View, StyleSheet, Keyboard, ToastAndroid } from "react-native";
+import React, { useState, useRef } from "react";
+import DropdownAlert from "react-native-dropdownalert";
 import NavBar from "../components/NavBar";
 import ScoresInput from "../components/ScoresInput";
 import ScoresStatusBar from "../components/ScoresStatusBar";
@@ -7,6 +8,7 @@ import ScoresContainer from "../components/ScoresContainer";
 import ResetComponent from "../components/ResetComponent";
 
 const MainScreen = () => {
+  let dropDownAlertRef = useRef();
   const [visible, setVisible] = useState(true);
 
   const [firstTeamScoreArray, setfirstTeamScoreArray] = useState([0]);
@@ -110,14 +112,38 @@ const MainScreen = () => {
     let secondTeamArray = [...secondTeamScoreArray];
     let combinedTeamsScore = [...combinedScores];
 
+    if (firstTeamPoint !== " " && firstTeamPoint.length > 0) {
+      let firstCharecter = firstTeamPoint.split("")[0];
+      if (firstCharecter == "," || firstCharecter == ".") {
+        ToastAndroid.show(`مدخل خاطئ  ${firstTeamPoint}`, ToastAndroid.SHORT);
+        Keyboard.dismiss();
+
+        return console.log("tryeee");
+      }
+    }
+
+    if (secondTeamPoint !== " " && secondTeamPoint.length > 0) {
+      let firstCharecter = secondTeamPoint.split("")[0];
+      if (firstCharecter == "," || firstCharecter == ".") {
+        ToastAndroid.show(`مدخل خاطئ  ${secondTeamPoint}`, ToastAndroid.SHORT);
+        Keyboard.dismiss();
+
+        return console.log("tryeee");
+      }
+    }
+
     if (firstTeamPoint == "") {
       firstTeamPoint = 0;
     }
     if (secondTeamPoint == "") {
       secondTeamPoint = 0;
     }
+
     let num1 = parseInt(firstTeamPoint);
     let num2 = parseInt(secondTeamPoint);
+
+    // console.log(num1);
+    // console.log(num2);
 
     firstTeamArray.push(num1);
     secondTeamArray.push(num2);

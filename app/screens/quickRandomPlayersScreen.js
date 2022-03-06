@@ -4,13 +4,16 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
+  ImageBackground,
 } from "react-native";
 import React, { useState } from "react";
 import { Overlay, FAB } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import RandomTeamsContainer from "../components/randomTeamsContainer";
+import { BackgroundImage } from "react-native-elements/dist/config";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
+const Background = require("../assets/2222.png");
 
 const quickRandomPlayersScreen = () => {
   const navigation = useNavigation();
@@ -48,7 +51,6 @@ const quickRandomPlayersScreen = () => {
       }
     }
 
-    console.log(122, randomTeams);
     setteams(randomTeams);
     setVisible(!visible);
   };
@@ -58,6 +60,11 @@ const quickRandomPlayersScreen = () => {
 
   return (
     <>
+      {/* <ImageBackground
+        source={Background}
+        style={{ width: "100%", height: "100%" }}
+        imageStyle={{ resizeMode: "repeat" }}
+      > */}
       <View
         style={{
           justifyContent: "center",
@@ -112,6 +119,7 @@ const quickRandomPlayersScreen = () => {
       <Overlay isVisible={visible}>
         <RandomTeamsContainer teams={teams} toggleOverlay={toggleOverlay} />
       </Overlay>
+      {/* </ImageBackground> */}
     </>
   );
 };
