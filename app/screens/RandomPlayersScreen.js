@@ -123,24 +123,26 @@ const RandomPlayersScreen = () => {
           }
         </Text>
       </View>
-      <ScrollView style={styles.playersNames}>
-        {playersArray.map((item, index) => (
-          <View style={styles.singlePlayerContainer} key={item.id}>
-            <View>
-              <Text style={{ fontSize: 18, marginTop: 5 }}>{item.name}</Text>
-            </View>
+      <View>
+        <ScrollView style={styles.playersNames}>
+          {playersArray.map((item, index) => (
+            <View style={styles.singlePlayerContainer} key={item.id}>
+              <View>
+                <Text style={{ fontSize: 18, marginTop: 5 }}>{item.name}</Text>
+              </View>
 
-            <View>
-              <FAB
-                icon={{ name: "delete", color: "white" }}
-                size="small"
-                color="red"
-                onPress={() => deletePlayer(item)}
-              />
+              <View>
+                <FAB
+                  icon={{ name: "delete", color: "white" }}
+                  size="small"
+                  color="red"
+                  onPress={() => deletePlayer(item)}
+                />
+              </View>
             </View>
-          </View>
-        ))}
-      </ScrollView>
+          ))}
+        </ScrollView>
+      </View>
       <View style={styles.setTeamsButtonContainer}>
         <TouchableOpacity
           onPress={setTeamsRandom}
@@ -186,7 +188,7 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingTop: 30,
     paddingBottom: 30,
-    height: windowHeight / 2.5,
+    height: windowHeight / 3.1,
   },
   singlePlayerContainer: {
     marginTop: 5,
