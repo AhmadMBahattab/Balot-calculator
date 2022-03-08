@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     padding: 15,
     justifyContent: "space-between",
     flexDirection: "row",
-    width: windowWidth / 1.2,
+    width: windowWidth / 1.1,
   },
   team: {
     padding: 20,
