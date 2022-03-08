@@ -55,23 +55,17 @@ const NavBar = ({ resetScores, backOneStep }) => {
 };
 const styles = StyleSheet.create({
   navBar: {
-    padding: 10,
-    paddingTop: 30,
+    padding: 20,
     backgroundColor: "#004582",
-    height: statusBarHight * 2.5,
     justifyContent: "center",
-    alignContent: "center",
   },
   navBarInfo: {
-    margin: 10,
     flexDirection: "row",
     justifyContent: "space-between",
   },
 
   navBarButtons: {
     flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
   },
 });
 
