@@ -5,11 +5,14 @@ import {
   ToastAndroid,
   NativeModules,
   NativeModule,
+  Text,
 } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
 import React, { useState, useRef } from "react";
-import DropdownAlert from "react-native-dropdownalert";
-import * as Device from "expo-device";
-import * as Localization from "expo-localization";
+import { useNavigation } from "@react-navigation/native";
+import { useKeyboard } from "@react-native-community/hooks";
+import { FAB } from "react-native-elements";
+
 import NavBar from "../components/NavBar";
 import ScoresInput from "../components/ScoresInput";
 import ScoresStatusBar from "../components/ScoresStatusBar";
@@ -27,6 +30,10 @@ const MainScreen = () => {
   const [remainWinScore, setremainWinScore] = useState(152);
 
   const [combinedScores, setcombinedScores] = useState([]);
+
+  const navigation = useNavigation();
+  const keyboard = useKeyboard();
+  console.log(keyboard.keyboardShown);
 
   const resetScores = () => {
     setcombinedScores([]);
@@ -185,6 +192,7 @@ const MainScreen = () => {
   const toggleOverlay = () => {
     setVisible(!visible);
   };
+
   return (
     <>
       {totalLastScoreA(firstTeamScoreArray) >= 152 ||
@@ -207,6 +215,21 @@ const MainScreen = () => {
         />
         <ScoresStatusBar />
         <ScoresContainer combinedScores={combinedScores} />
+        {combinedScores.length === 0 && keyboard.keyboardShown == false ? (
+          <View style={styles.randomPlayersButton}>
+            <FAB
+              visible={visible}
+              title="دقة ولد "
+              upperCase
+              icon={<FontAwesome name="random" size={22} color="white" />}
+              color={"#004582"}
+              onPress={() => {
+                navigation.navigate("دقة الولد");
+              }}
+            />
+            <Text></Text>
+          </View>
+        ) : null}
       </View>
     </>
   );
@@ -214,6 +237,11 @@ const MainScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  randomPlayersButton: {
+    margin: 15,
+    justifyContent: "space-between",
+    flexDirection: "row",
   },
 });
 
