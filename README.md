@@ -1,9 +1,15 @@
 # Balot-calculator
 
+<img src ="Screenshots/1.png" width=300 />
 
-<img src ="Screenshots/Screenshot_1641735464.png" width=300 />
+<img src ="Screenshots/2.png" width=300 />
 
+<img src ="Screenshots/3.png" width=300 />
 
-<img src ="Screenshots/Screenshot_1641735392.png" width=300 />
+<img src ="Screenshots/4.png" width=300 />
 
-<img src ="Screenshots/Screenshot_1641735414.png" width=300 />
+<img src ="Screenshots/5.png" width=300 />
+
+<img src ="Screenshots/6.png" width=300 />
+
+<img src ="Screenshots/7.png" width=300 />
