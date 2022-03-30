@@ -1,12 +1,4 @@
-import {
-  View,
-  StyleSheet,
-  Keyboard,
-  ToastAndroid,
-  NativeModules,
-  NativeModule,
-  Text,
-} from "react-native";
+import { View, StyleSheet, Keyboard, ToastAndroid, Text } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import React, { useState, useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -18,8 +10,7 @@ import ScoresInput from "../components/ScoresInput";
 import ScoresStatusBar from "../components/ScoresStatusBar";
 import ScoresContainer from "../components/ScoresContainer";
 import ResetComponent from "../components/ResetComponent";
-// en-US
-// ar-EG
+
 const MainScreen = () => {
   const [visible, setVisible] = useState(true);
   const [firstTeamScoreArray, setfirstTeamScoreArray] = useState([0]);
