@@ -8,8 +8,10 @@ import {
   AntDesign,
   FontAwesome,
   MaterialCommunityIcons,
+  Fontisto,
 } from "@expo/vector-icons";
 import RandomPlayersNavigator from "./RandomPlayersNavigator";
+import BalotGamesHistory from "../screens/BalotGamesHistory";
 
 const Drawer = createDrawerNavigator();
 const AppNavigator = () => {
@@ -34,7 +36,7 @@ const AppNavigator = () => {
             backgroundColor: "#004582",
           },
           headerTitleStyle: { color: "white" },
-          drawerIcon: () => <AntDesign name="home" size={20} />,
+          drawerIcon: () => <AntDesign name="home" size={24} />,
         }}
       />
       <Drawer.Screen
@@ -48,6 +50,17 @@ const AppNavigator = () => {
           drawerIcon: () => (
             <FontAwesome name="random" size={24} color="black" />
           ),
+        }}
+      />
+      <Drawer.Screen
+        name="الصكات المحفوظة"
+        component={BalotGamesHistory}
+        options={{
+          headerStyle: {
+            backgroundColor: "#004582",
+          },
+          headerTitleStyle: { color: "white" },
+          drawerIcon: () => <Fontisto name="history" size={24} color="black" />,
         }}
       />
     </Drawer.Navigator>

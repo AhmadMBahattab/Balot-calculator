@@ -1,8 +1,9 @@
+import React, { useState, useRef, useEffect } from "react";
 import { View, StyleSheet, Keyboard, ToastAndroid, Text } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import React, { useState, useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useKeyboard } from "@react-native-community/hooks";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { FAB } from "react-native-elements";
 
 import NavBar from "../components/NavBar";
@@ -24,9 +25,12 @@ const MainScreen = () => {
 
   const navigation = useNavigation();
   const keyboard = useKeyboard();
-  console.log(keyboard.keyboardShown);
 
-  const resetScores = () => {
+  useEffect(async () => {
+    loadScore();
+  }, []);
+
+  const resetScores = async () => {
     setcombinedScores([]);
     setfirstTeamScoreArray([0]);
     setsecondTeamScoreArray([0]);
@@ -34,6 +38,21 @@ const MainScreen = () => {
     setsecondPoint(0);
     setVisible(true);
     setremainWinScore(152);
+    const keys = [
+      "firstTeamArray",
+      "secondTeamArray",
+      "firstTeamPoints",
+      "SecondTeamsPoint",
+      "savedScore",
+      "remainTeamsScore",
+    ];
+    try {
+      await AsyncStorage.multiRemove(keys);
+    } catch (e) {
+      // remove error
+    }
+
+    console.log("Clear storage done!!");
   };
 
   const backOneStep = () => {
@@ -101,15 +120,15 @@ const MainScreen = () => {
   const calculatRemainScore = (total1, total2) => {
     if (total1 > total2) {
       setremainWinScore(152 - total1);
-      return;
+      return 152 - total1;
     }
     if (total2 > total1) {
       setremainWinScore(152 - total2);
-      return;
+      return 152 - total2;
     }
     if (total1 == total2) {
       setremainWinScore(152 - total2);
-      return;
+      return 152 - total2;
     }
   };
 
@@ -152,9 +171,6 @@ const MainScreen = () => {
     let num1 = parseInt(firstTeamPoint);
     let num2 = parseInt(secondTeamPoint);
 
-    // console.log(num1);
-    // console.log(num2);
-
     firstTeamArray.push(num1);
     secondTeamArray.push(num2);
 
@@ -179,9 +195,74 @@ const MainScreen = () => {
       totalLastScoreB(secondTeamArray)
     );
     Keyboard.dismiss();
+    saveScores(
+      combinedTeamsScore,
+      firstTeamArray,
+      secondTeamArray,
+      totalLastScoreA(firstTeamArray),
+      totalLastScoreB(secondTeamArray),
+      remainWinScore
+    );
   };
   const toggleOverlay = () => {
     setVisible(!visible);
+  };
+
+  const saveScores = async (
+    teamesScoresToSave,
+    firstTeamArray,
+    secondTeamArray,
+    firstTeamPoints,
+    secondTeamPoints,
+    remainScore
+  ) => {
+    try {
+      const combinedTeamsScore = JSON.stringify(teamesScoresToSave);
+      const firstTeamArr = JSON.stringify(firstTeamArray);
+      const secondTeamArr = JSON.stringify(secondTeamArray);
+
+      await AsyncStorage.setItem("savedScore", combinedTeamsScore);
+      await AsyncStorage.setItem("firstTeamArray", firstTeamArr);
+      await AsyncStorage.setItem("secondTeamArray", secondTeamArr);
+      await AsyncStorage.setItem("remainTeamsScore", remainScore.toString());
+      await AsyncStorage.setItem("firstTeamPoints", firstTeamPoints.toString());
+      await AsyncStorage.setItem(
+        "SecondTeamsPoint",
+        secondTeamPoints.toString()
+      );
+    } catch (error) {
+      alert(error);
+    }
+  };
+  const loadScore = async () => {
+    try {
+      let loadedScore = await AsyncStorage.getItem("savedScore");
+      let AteamArray = await AsyncStorage.getItem("firstTeamArray");
+      let BteamArray = await AsyncStorage.getItem("secondTeamArray");
+      let AteamPoints = await AsyncStorage.getItem("firstTeamPoints");
+      let BteamPoints = await AsyncStorage.getItem("SecondTeamsPoint");
+      let remainTeamsScore = await AsyncStorage.getItem("remainTeamsScore");
+
+      if (
+        loadedScore !== null &&
+        AteamArray !== null &&
+        BteamArray !== null &&
+        AteamPoints !== null &&
+        BteamPoints !== null
+      ) {
+        const combinedScore = JSON.parse(loadedScore);
+        const AteamScoreArr = JSON.parse(AteamArray);
+        const BteamScoreArr = JSON.parse(BteamArray);
+        setcombinedScores(combinedScore);
+        setfirstTeamScoreArray(AteamScoreArr);
+        setsecondTeamScoreArray(BteamScoreArr);
+        setfirstPoint(AteamPoints);
+        setsecondPoint(BteamPoints);
+        setremainWinScore(remainTeamsScore);
+      }
+    } catch (error) {
+      alert(error);
+    }
   };
 
   return (

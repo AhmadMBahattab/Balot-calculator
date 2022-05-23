@@ -10,7 +10,6 @@ const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const ScoresInput = ({ firstPoint, secondPoint, remainWinScore, addScore }) => {
-  console.log(Localization.locale);
   const [visible, setVisible] = useState(true);
   const [firstScore, setfirstScore] = useState(0);
   const [secondScore, setsecondScore] = useState(0);
