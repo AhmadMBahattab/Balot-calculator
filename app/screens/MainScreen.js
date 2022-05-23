@@ -76,6 +76,18 @@ const MainScreen = () => {
         totalLastScoreA(firstTeamArray),
         totalLastScoreB(secondTeamArray)
       );
+
+      saveScores(
+        combinedTeamsScore,
+        firstTeamArray,
+        secondTeamArray,
+        totalLastScoreA(firstTeamArray),
+        totalLastScoreB(secondTeamArray),
+        calculatRemainScore(
+          totalLastScoreA(firstTeamArray),
+          totalLastScoreB(secondTeamArray)
+        )
+      );
       return;
     }
     if (combinedScores.length <= 1) {
@@ -201,7 +213,10 @@ const MainScreen = () => {
       secondTeamArray,
       totalLastScoreA(firstTeamArray),
       totalLastScoreB(secondTeamArray),
-      remainWinScore
+      calculatRemainScore(
+        totalLastScoreA(firstTeamArray),
+        totalLastScoreB(secondTeamArray)
+      )
     );
   };
   const toggleOverlay = () => {
