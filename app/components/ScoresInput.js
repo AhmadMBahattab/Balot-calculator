@@ -173,10 +173,14 @@ const styles = StyleSheet.create({
     borderBottomColor: "#E3E3E3",
     borderBottomWidth: 1,
     borderStyle: "solid",
+    backgroundColor: "white",
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
   singleScoreInfoContainer: {
     alignItems: "center",
     width: windowHeight / 7,
+    // backgroundColor: "white",
   },
   singleScoreInfo: {
     marginVertical: 4,

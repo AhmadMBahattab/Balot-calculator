@@ -1,5 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { View, StyleSheet, Keyboard, ToastAndroid, Text } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Keyboard,
+  ToastAndroid,
+  Text,
+  ImageBackground,
+} from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { useKeyboard } from "@react-native-community/hooks";
@@ -12,6 +19,7 @@ import ScoresStatusBar from "../components/ScoresStatusBar";
 import ScoresContainer from "../components/ScoresContainer";
 import ResetComponent from "../components/ResetComponent";
 
+const background = require("../assets/2222.png");
 const MainScreen = () => {
   const [visible, setVisible] = useState(true);
   const [firstTeamScoreArray, setfirstTeamScoreArray] = useState([0]);
@@ -148,24 +156,33 @@ const MainScreen = () => {
     let firstTeamArray = [...firstTeamScoreArray];
     let secondTeamArray = [...secondTeamScoreArray];
     let combinedTeamsScore = [...combinedScores];
-
     if (firstTeamPoint == "" && secondTeamPoint == "") {
       return console.log("nothing");
     }
 
     if (firstTeamPoint !== " " && firstTeamPoint.length > 0) {
       let firstCharecter = firstTeamPoint.split("")[0];
-      if (firstCharecter == "," || firstCharecter == ".") {
+      if (
+        firstCharecter == "," ||
+        firstCharecter == "." ||
+        firstCharecter == "-" ||
+        firstCharecter == " "
+      ) {
         ToastAndroid.show(`مدخل خاطئ  ${firstTeamPoint}`, ToastAndroid.SHORT);
         Keyboard.dismiss();
 
-        return console.log("tryeee");
+        return console.log("Wrong input");
       }
     }
 
     if (secondTeamPoint !== " " && secondTeamPoint.length > 0) {
       let firstCharecter = secondTeamPoint.split("")[0];
-      if (firstCharecter == "," || firstCharecter == ".") {
+      if (
+        firstCharecter == "," ||
+        firstCharecter == "." ||
+        firstCharecter == "-" ||
+        firstCharecter == " "
+      ) {
         ToastAndroid.show(`مدخل خاطئ  ${secondTeamPoint}`, ToastAndroid.SHORT);
         Keyboard.dismiss();
 
@@ -292,32 +309,39 @@ const MainScreen = () => {
           />
         </>
       ) : null}
-      <View style={styles.container}>
-        <NavBar resetScores={resetScores} backOneStep={backOneStep} />
-        <ScoresInput
-          firstPoint={firstPoint}
-          secondPoint={secondPoint}
-          remainWinScore={remainWinScore}
-          addScore={addScore}
-        />
-        <ScoresStatusBar />
-        <ScoresContainer combinedScores={combinedScores} />
-        {combinedScores.length === 0 && keyboard.keyboardShown == false ? (
-          <View style={styles.randomPlayersButton}>
-            <FAB
-              visible={visible}
-              title="دقة ولد "
-              upperCase
-              icon={<FontAwesome name="random" size={22} color="white" />}
-              color={"#004582"}
-              onPress={() => {
-                navigation.navigate("دقة الولد");
-              }}
-            />
-            <Text></Text>
-          </View>
-        ) : null}
-      </View>
+      <ImageBackground
+        source={background}
+        style={{ width: "100%", height: 1000, opacity: 1 }}
+        resizeMode="repeat"
+        imageStyle={{ opacity: 0.1 }}
+      >
+        <View style={styles.container}>
+          <NavBar resetScores={resetScores} backOneStep={backOneStep} />
+          <ScoresInput
+            firstPoint={firstPoint}
+            secondPoint={secondPoint}
+            remainWinScore={remainWinScore}
+            addScore={addScore}
+          />
+          <ScoresStatusBar />
+          <ScoresContainer combinedScores={combinedScores} />
+          {combinedScores.length === 0 && keyboard.keyboardShown == false ? (
+            <View style={styles.randomPlayersButton}>
+              <FAB
+                visible={visible}
+                title="دقة ولد "
+                upperCase
+                icon={<FontAwesome name="random" size={22} color="white" />}
+                color={"#004582"}
+                onPress={() => {
+                  navigation.navigate("دقة الولد");
+                }}
+              />
+              <Text></Text>
+            </View>
+          ) : null}
+        </View>
+      </ImageBackground>
     </>
   );
 };
@@ -329,6 +353,7 @@ const styles = StyleSheet.create({
     margin: 15,
     justifyContent: "space-between",
     flexDirection: "row",
+    position: "absolute",
   },
 });
 

@@ -29,6 +29,7 @@ const RandomPlayersScreen = () => {
     if (playersArray.length >= 10) return;
 
     newArray.push({
+      id: Date.now(),
       name: playerName,
     });
     setplayerName("");
@@ -40,7 +41,7 @@ const RandomPlayersScreen = () => {
     let newArray = [...playersArray];
     console.log(player);
     newArray = newArray.filter((value) => {
-      return value.name != player.name;
+      return value.id != player.id;
     });
     setplayersArray(newArray);
   };
