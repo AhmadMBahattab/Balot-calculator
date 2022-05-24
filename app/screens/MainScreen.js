@@ -323,7 +323,7 @@ const MainScreen = () => {
             remainWinScore={remainWinScore}
             addScore={addScore}
           />
-          <ScoresStatusBar />
+          {/* <ScoresStatusBar /> */}
           <ScoresContainer combinedScores={combinedScores} />
           {combinedScores.length === 0 && keyboard.keyboardShown == false ? (
             <View style={styles.randomPlayersButton}>

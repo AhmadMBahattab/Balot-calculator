@@ -49,7 +49,8 @@ const ScoresContainer = ({ combinedScores }) => {
 };
 const styles = StyleSheet.create({
   scoresContainer: {
-    padding: 20,
+    paddingRight: 20,
+    paddingLeft: 20,
     marginBottom: 20,
     backgroundColor: "transparent",
   },
