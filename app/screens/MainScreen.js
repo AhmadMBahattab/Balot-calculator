@@ -1,5 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { View, StyleSheet, Keyboard, ToastAndroid, Text } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Keyboard,
+  ToastAndroid,
+  Text,
+  Image,
+} from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { useKeyboard } from "@react-native-community/hooks";
@@ -302,6 +309,7 @@ const MainScreen = () => {
         />
         <ScoresStatusBar />
         <ScoresContainer combinedScores={combinedScores} />
+
         {combinedScores.length === 0 && keyboard.keyboardShown == false ? (
           <View style={styles.randomPlayersButton}>
             <FAB
