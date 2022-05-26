@@ -30,17 +30,21 @@ const NavBar = ({ resetScores, backOneStep }) => {
         <View style={styles.navBarInfo}>
           <View style={styles.navBarButtons}>
             <TouchableOpacity onPress={backOneStep}>
-              <FontAwesome5 name="redo" size={20} color="white" />
+              <MaterialCommunityIcons
+                name="backup-restore"
+                size={28}
+                color="white"
+              />
             </TouchableOpacity>
 
             <TouchableOpacity onPress={toggleOverlay}>
               <MaterialCommunityIcons
-                name="delete"
+                name="new-box"
                 style={{
-                  fontSize: 24,
+                  fontSize: 28,
                   color: "white",
                   marginRight: windowWidth / 20,
-                  marginLeft: windowWidth / 20,
+                  marginLeft: windowWidth / 15,
                 }}
               />
             </TouchableOpacity>

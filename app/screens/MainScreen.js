@@ -309,39 +309,39 @@ const MainScreen = () => {
           />
         </>
       ) : null}
-      <ImageBackground
+      {/* <ImageBackground
         source={background}
         style={{ width: "100%", height: 1000, opacity: 1 }}
         resizeMode="repeat"
         imageStyle={{ opacity: 0.1 }}
-      >
-        <View style={styles.container}>
-          <NavBar resetScores={resetScores} backOneStep={backOneStep} />
-          <ScoresInput
-            firstPoint={firstPoint}
-            secondPoint={secondPoint}
-            remainWinScore={remainWinScore}
-            addScore={addScore}
-          />
-          {/* <ScoresStatusBar /> */}
-          <ScoresContainer combinedScores={combinedScores} />
-          {combinedScores.length === 0 && keyboard.keyboardShown == false ? (
-            <View style={styles.randomPlayersButton}>
-              <FAB
-                visible={visible}
-                title="دقة ولد "
-                upperCase
-                icon={<FontAwesome name="random" size={22} color="white" />}
-                color={"#004582"}
-                onPress={() => {
-                  navigation.navigate("دقة الولد");
-                }}
-              />
-              <Text></Text>
-            </View>
-          ) : null}
-        </View>
-      </ImageBackground>
+      > */}
+      <View style={styles.container}>
+        <NavBar resetScores={resetScores} backOneStep={backOneStep} />
+        <ScoresInput
+          firstPoint={firstPoint}
+          secondPoint={secondPoint}
+          remainWinScore={remainWinScore}
+          addScore={addScore}
+        />
+        {/* <ScoresStatusBar /> */}
+        <ScoresContainer combinedScores={combinedScores} />
+        {combinedScores.length === 0 && keyboard.keyboardShown == false ? (
+          <View style={styles.randomPlayersButton}>
+            <FAB
+              visible={visible}
+              title="دقة ولد "
+              upperCase
+              icon={<FontAwesome name="random" size={22} color="white" />}
+              color={"#004582"}
+              onPress={() => {
+                navigation.navigate("دقة الولد");
+              }}
+            />
+            <Text></Text>
+          </View>
+        ) : null}
+      </View>
+      {/* </ImageBackground> */}
     </>
   );
 };
@@ -350,7 +350,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   randomPlayersButton: {
-    margin: 15,
+    marginLeft: 15,
     justifyContent: "space-between",
     flexDirection: "row",
   },

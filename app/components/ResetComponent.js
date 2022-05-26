@@ -9,7 +9,11 @@ const windowHeight = Dimensions.get("window").height;
 
 const ResetComponent = ({ resetScores, toggleOverlay, visible }) => {
   return (
-    <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
+    <Overlay
+      isVisible={visible}
+      onBackdropPress={toggleOverlay}
+      overlayStyle={{ borderRadius: 10 }}
+    >
       <View style={styles.resetContainer}>
         <Text style={{ fontSize: 20 }}>صكة جديدة ؟</Text>
         <View style={styles.resetButtons}>
@@ -18,7 +22,7 @@ const ResetComponent = ({ resetScores, toggleOverlay, visible }) => {
               title={"لا"}
               onPress={toggleOverlay}
               buttonStyle={{
-                backgroundColor: "#004582",
+                backgroundColor: "red",
                 borderRadius: 5,
               }}
             />
@@ -44,7 +48,6 @@ const styles = StyleSheet.create({
   resetContainer: {
     paddingTop: 5,
     paddingRight: 5,
-    paddingLeft: windowWidth / 10,
   },
   resetButtons: {
     marginTop: 10,
@@ -53,7 +56,7 @@ const styles = StyleSheet.create({
   singleResetButton: {
     margin: 15,
     padding: 0,
-    width: windowWidth / 8,
+    width: windowWidth / 6,
   },
 });
 

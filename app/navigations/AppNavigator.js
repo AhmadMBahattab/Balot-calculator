@@ -17,6 +17,8 @@ const Drawer = createDrawerNavigator();
 const AppNavigator = () => {
   return (
     <Drawer.Navigator
+    
+      backBehavior="order"
       drawerContent={(props) => <CustomDrawer {...props} />}
       screenOptions={({ navigation }) => ({
         headerLeft: () => (
@@ -35,8 +37,11 @@ const AppNavigator = () => {
           headerStyle: {
             backgroundColor: "#004582",
           },
-          headerTitleStyle: { color: "white" },
-          drawerIcon: () => <AntDesign name="home" size={24} />,
+          headerTitleStyle: { color: "white", fontSize: 20 },
+          drawerIcon: () => <AntDesign name="home" size={24} color={"white"} />,
+          drawerLabelStyle: { color: "white", fontSize: 18 },
+          // drawerActiveBackgroundColor: "white",
+          drawerActiveTintColor: "white",
         }}
       />
       <Drawer.Screen
@@ -46,13 +51,16 @@ const AppNavigator = () => {
           headerStyle: {
             backgroundColor: "#004582",
           },
-          headerTitleStyle: { color: "white" },
+          headerTitleStyle: { color: "white", fontSize: 20 },
           drawerIcon: () => (
-            <FontAwesome name="random" size={24} color="black" />
+            <FontAwesome name="random" size={24} color="white" />
           ),
+          drawerLabelStyle: { color: "white", fontSize: 18 },
+          // drawerActiveBackgroundColor: "white",
+          drawerActiveTintColor: "white",
         }}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="الصكات المحفوظة"
         component={BalotGamesHistory}
         options={{
@@ -62,7 +70,7 @@ const AppNavigator = () => {
           headerTitleStyle: { color: "white" },
           drawerIcon: () => <Fontisto name="history" size={24} color="black" />,
         }}
-      />
+      /> */}
     </Drawer.Navigator>
   );
 };
