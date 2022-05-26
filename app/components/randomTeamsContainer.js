@@ -20,10 +20,10 @@ const RandomTeamsContainer = ({ teams, toggleOverlay }) => {
         <View style={[styles.team, { backgroundColor: "#8ED1FC" }]}>
           <Text style={styles.teamTitle}>الفريق 2</Text>
           <Text style={{ marginTop: 5, fontSize: 18, color: "white" }}>
-            {teams[0]}
+            {teams[0].name}
           </Text>
           <Text style={{ marginTop: 5, fontSize: 18, color: "white" }}>
-            {teams[1]}
+            {teams[1].name}
           </Text>
         </View>
         <View>
@@ -32,10 +32,10 @@ const RandomTeamsContainer = ({ teams, toggleOverlay }) => {
         <View style={[styles.team, { backgroundColor: "#F96637" }]}>
           <Text style={styles.teamTitle}>الفريق 1</Text>
           <Text style={{ marginTop: 5, fontSize: 18, color: "white" }}>
-            {teams[2]}
+            {teams[2].name}
           </Text>
           <Text style={{ marginTop: 5, fontSize: 18, color: "white" }}>
-            {teams[3]}
+            {teams[3].name}
           </Text>
         </View>
       </View>

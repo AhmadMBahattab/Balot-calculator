@@ -37,7 +37,7 @@ const quickRandomPlayersScreen = () => {
     let i = 1;
 
     for (let i = 1; i <= playersNumber; i++) {
-      newArray.push(i);
+      newArray.push({ id: Date.now(), name: i });
     }
 
     let random = Math.floor(Math.random() * newArray.length);

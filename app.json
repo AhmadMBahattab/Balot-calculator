@@ -2,9 +2,9 @@
   "expo": {
     "name": "حاسبة بلوت الاستو",
     "slug": "Balot-calculator",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "orientation": "portrait",
-    "icon": "./app/assets/icons8-calculator-50.png",
+    "icon": "./app/assets/blot-S2-icon.png",
     "splash": {
       "image": "./app/assets/5531027.png",
       "resizeMode": "cover",
@@ -20,10 +20,10 @@
     "android": {
       "package": "com.xPyZzAx.S2BalotCalculator",
       "permissions": [],
-      "versionCode": 6,
+      "versionCode": 7,
       "adaptiveIcon": {
-        "foregroundImage": "./app/assets/playstore.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./app/assets/blot-S2-icon.png",
+        "backgroundColor": "#34495E"
       }
     },
     "web": {

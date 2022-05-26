@@ -56,8 +56,8 @@ const RandomPlayersScreen = () => {
 
     while (i <= 4) {
       random = Math.floor(Math.random() * newArray.length);
-      player = newArray[random].name;
-      if (randomTeams.includes(player) === false) {
+      player = newArray[random];
+      if (randomTeams.includes(player.id) === false) {
         randomTeams.push(player);
         i++;
       }
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingTop: 30,
     paddingBottom: 30,
-    height: windowHeight / 3.1,
+    height: windowHeight / 2.7,
   },
   singlePlayerContainer: {
     marginTop: 5,
