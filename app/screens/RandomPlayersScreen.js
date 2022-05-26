@@ -162,7 +162,7 @@ const RandomPlayersScreen = () => {
           </View>
         </TouchableOpacity>
       </View>
-      <Overlay isVisible={visible}>
+      <Overlay isVisible={visible} style={{ backgroundColor: "#004582" }}>
         <RandomTeamsContainer teams={teams} toggleOverlay={toggleOverlay} />
       </Overlay>
     </>
