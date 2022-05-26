@@ -4,7 +4,7 @@
     "slug": "Balot-calculator",
     "version": "1.0.3",
     "orientation": "portrait",
-    "icon": "./app/assets/blot-S2-icon.png",
+    "icon": "./app/assets/icons8-calculator-50.png",
     "splash": {
       "image": "./app/assets/5531027.png",
       "resizeMode": "cover",
@@ -20,7 +20,7 @@
     "android": {
       "package": "com.xPyZzAx.S2BalotCalculator",
       "permissions": [],
-      "versionCode": 7,
+      "versionCode": 8,
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/blot-S2-icon.png",
         "backgroundColor": "#34495E"
