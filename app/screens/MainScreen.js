@@ -350,7 +350,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   randomPlayersButton: {
-    marginLeft: 15,
+    margin: 15,
     justifyContent: "space-between",
     flexDirection: "row",
   },
