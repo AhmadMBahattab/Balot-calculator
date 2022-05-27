@@ -20,14 +20,14 @@
     "android": {
       "package": "com.xPyZzAx.S2BalotCalculator",
       "permissions": [],
-      "versionCode": 8,
+      "versionCode": 9,
       "adaptiveIcon": {
-        "foregroundImage": "./app/assets/blot-S2-icon.png",
-        "backgroundColor": "#34495E"
+        "foregroundImage": "./app/assets/icons8-calculator-50.png",
+        "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/icons8-calculator-50.png"
     }
   }
 }
