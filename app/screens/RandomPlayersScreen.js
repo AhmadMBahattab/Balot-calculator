@@ -57,10 +57,11 @@ const RandomPlayersScreen = () => {
     while (i <= 4) {
       random = Math.floor(Math.random() * newArray.length);
       player = newArray[random];
-      if (randomTeams.includes(player.id) === false) {
+      if (randomTeams.includes(player) === false) {
         randomTeams.push(player);
         i++;
       }
+      console.log(player);
     }
 
     console.log(122, randomTeams);
