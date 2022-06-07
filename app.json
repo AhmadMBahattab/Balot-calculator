@@ -20,7 +20,7 @@
     "android": {
       "package": "com.xPyZzAx.S2BalotCalculator",
       "permissions": [],
-      "versionCode": 9,
+      "versionCode": 10,
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/icons8-calculator-50.png",
         "backgroundColor": "#FFFFFF"
