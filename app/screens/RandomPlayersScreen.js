@@ -73,7 +73,7 @@ const RandomPlayersScreen = () => {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ height: windowHeight / 1.1 }}>
       <View style={styles.setTeamsButtonContainer}>
         <TouchableOpacity
           onPress={setTeamsRandom}
@@ -172,7 +172,7 @@ const RandomPlayersScreen = () => {
 
 const styles = StyleSheet.create({
   setTeamsButtonContainer: {
-    marginBottom: 30,
+    marginBottom: 10,
   },
   quickButton: {
     margin: 20,
