@@ -73,16 +73,25 @@ const RandomPlayersScreen = () => {
   };
 
   return (
-    <>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate("دقة ولد سريعة");
-        }}
-      >
-        <View style={styles.quickButton}>
-          <Text style={{ color: "white", fontSize: 18 }}>دقة ولد سريعة</Text>
-        </View>
-      </TouchableOpacity>
+    <View style={{ flex: 1 }}>
+      <View style={styles.setTeamsButtonContainer}>
+        <TouchableOpacity
+          onPress={setTeamsRandom}
+          disabled={playersArray.length < 4 ? true : false}
+        >
+          <View
+            style={[
+              styles.chooseTeamesButton,
+              {
+                backgroundColor:
+                  playersArray.length < 4 ? "#496883" : "#004582",
+              },
+            ]}
+          >
+            <Text style={{ color: "white", fontSize: 18 }}>دقة الولد</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
 
       <View style={styles.playersNamesContainer}>
         <View style={{ width: "80%" }}>
@@ -125,52 +134,46 @@ const RandomPlayersScreen = () => {
           }
         </Text>
       </View>
-      <View>
-        <ScrollView style={styles.playersNames}>
-          {playersArray.map((item, index) => (
-            <View style={styles.singlePlayerContainer} key={item.id}>
-              <View>
-                <Text style={{ fontSize: 18, marginTop: 5 }}>{item.name}</Text>
-              </View>
 
-              <View>
-                <FAB
-                  icon={{ name: "delete", color: "white" }}
-                  size="small"
-                  color="red"
-                  onPress={() => deletePlayer(item)}
-                />
-              </View>
+      <ScrollView style={styles.playersNames}>
+        {playersArray.map((item, index) => (
+          <View style={styles.singlePlayerContainer} key={item.id}>
+            <View>
+              <Text style={{ fontSize: 18, marginTop: 5 }}>{item.name}</Text>
             </View>
-          ))}
-        </ScrollView>
-      </View>
-      <View style={styles.setTeamsButtonContainer}>
-        <TouchableOpacity
-          onPress={setTeamsRandom}
-          disabled={playersArray.length < 4 ? true : false}
-        >
-          <View
-            style={[
-              styles.chooseTeamesButton,
-              {
-                backgroundColor:
-                  playersArray.length < 4 ? "#496883" : "#004582",
-              },
-            ]}
-          >
-            <Text style={{ color: "white", fontSize: 18 }}>دقة الولد</Text>
+
+            <View>
+              <FAB
+                icon={{ name: "delete", color: "white" }}
+                size="small"
+                color="red"
+                onPress={() => deletePlayer(item)}
+              />
+            </View>
           </View>
-        </TouchableOpacity>
-      </View>
+        ))}
+      </ScrollView>
+
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate("دقة ولد سريعة");
+        }}
+      >
+        <View style={styles.quickButton}>
+          <Text style={{ color: "white", fontSize: 18 }}>دقة ولد سريعة</Text>
+        </View>
+      </TouchableOpacity>
       <Overlay isVisible={visible} style={{ backgroundColor: "#004582" }}>
         <RandomTeamsContainer teams={teams} toggleOverlay={toggleOverlay} />
       </Overlay>
-    </>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  setTeamsButtonContainer: {
+    marginBottom: 30,
+  },
   quickButton: {
     margin: 20,
     backgroundColor: "#004582",
@@ -190,7 +193,7 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingTop: 30,
     paddingBottom: 30,
-    height: windowHeight / 2.7,
+    // height: windowHeight / 2.7,
   },
   singlePlayerContainer: {
     marginTop: 5,
@@ -203,10 +206,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: "row",
   },
-  setTeamsButtonContainer: {
-    flex: 1,
-    justifyContent: "flex-end",
-  },
+
   chooseTeamesButton: {
     margin: 20,
     backgroundColor: "#004512",
