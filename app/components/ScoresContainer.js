@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   StyleSheet,
   Text,
@@ -15,8 +15,15 @@ let height = Dimensions.get("window").height;
 const background = require("../assets/2222.png");
 
 const ScoresContainer = ({ combinedScores }) => {
+  const scrollViewRef = useRef();
   return (
-    <ScrollView style={styles.scoresContainer}>
+    <ScrollView
+      style={styles.scoresContainer}
+      ref={scrollViewRef}
+      onContentSizeChange={() =>
+        scrollViewRef.current.scrollToEnd({ animated: true })
+      }
+    >
       {combinedScores.map((item, index) => (
         <View key={index} style={styles.singleScoreContainer}>
           <View style={styles.singleScoreInfo}>
