@@ -2,7 +2,7 @@
   "expo": {
     "name": "حاسبة بلوت الاستو",
     "slug": "Balot-calculator",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./app/assets/icons8-calculator-50.png",
     "splash": {
@@ -21,7 +21,7 @@
     "android": {
       "package": "com.xPyZzAx.S2BalotCalculator",
       "permissions": [],
-      "versionCode": 11,
+      "versionCode": 12,
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/icons8-calculator-50.png",
         "backgroundColor": "#FFFFFF"
