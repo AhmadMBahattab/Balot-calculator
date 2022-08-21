@@ -88,6 +88,7 @@ const ScoresInput = ({ firstPoint, secondPoint, remainWinScore, addScore }) => {
               onChangeText={(value) => setsecondScore(value)}
               value={secondScore}
               maxLength={3}
+              
             />
           </View>
         </>

@@ -6,12 +6,15 @@ import {
   ToastAndroid,
   Text,
   ImageBackground,
+  Alert,
+  Platform,
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { useKeyboard } from "@react-native-community/hooks";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { FAB } from "react-native-elements";
+import * as Localization from "expo-localization";
 
 import NavBar from "../components/NavBar";
 import ScoresInput from "../components/ScoresInput";
@@ -153,6 +156,7 @@ const MainScreen = () => {
   };
 
   const addScore = (firstTeamPoint, secondTeamPoint) => {
+    const checkNumber = new RegExp("^[0-9]+$");
     let firstTeamArray = [...firstTeamScoreArray];
     let secondTeamArray = [...secondTeamScoreArray];
     let combinedTeamsScore = [...combinedScores];
@@ -166,12 +170,20 @@ const MainScreen = () => {
         firstCharecter == "," ||
         firstCharecter == "." ||
         firstCharecter == "-" ||
-        firstCharecter == " "
+        firstCharecter == " " ||
+        !checkNumber.test(firstCharecter)
       ) {
-        ToastAndroid.show(`مدخل خاطئ  ${firstTeamPoint}`, ToastAndroid.SHORT);
+        if (Platform.OS == "ios") {
+          console.log();
+          Alert.alert("مدخل خاطئ", " لا تقبل الارقام العربية او الرموز");
+        }
+        if (Platform.OS == "android") {
+          ToastAndroid.show(`مدخل خاطئ  ${firstTeamPoint}`, ToastAndroid.SHORT);
+        }
+
         Keyboard.dismiss();
 
-        return console.log("Wrong input");
+        return console.log("Wrong input ", firstCharecter);
       }
     }
 
@@ -181,9 +193,17 @@ const MainScreen = () => {
         firstCharecter == "," ||
         firstCharecter == "." ||
         firstCharecter == "-" ||
-        firstCharecter == " "
+        firstCharecter == " " ||
+        !checkNumber.test(firstCharecter)
       ) {
-        ToastAndroid.show(`مدخل خاطئ  ${secondTeamPoint}`, ToastAndroid.SHORT);
+        if (Platform.OS == "ios") {
+          console.log(firstCharecter);
+          Alert.alert("مدخل خاطئ", " لا تقبل الارقام العربية او الرموز");
+        }
+        if (Platform.OS == "android") {
+          ToastAndroid.show(`مدخل خاطئ  ${firstTeamPoint}`, ToastAndroid.SHORT);
+        }
+
         Keyboard.dismiss();
 
         return console.log("tryeee");
