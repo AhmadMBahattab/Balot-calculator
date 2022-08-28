@@ -17,7 +17,6 @@ const Drawer = createDrawerNavigator();
 const AppNavigator = () => {
   return (
     <Drawer.Navigator
-    
       backBehavior="order"
       drawerContent={(props) => <CustomDrawer {...props} />}
       screenOptions={({ navigation }) => ({
@@ -60,6 +59,23 @@ const AppNavigator = () => {
           drawerActiveTintColor: "white",
         }}
       />
+      {/* <Drawer.Screen
+        name="Settings"
+        component={RandomPlayersNavigator}
+        options={{
+          headerStyle: {
+            backgroundColor: "#004582",
+          },
+          headerTitleStyle: { color: "white", fontSize: 20 },
+          drawerIcon: () => (
+            <FontAwesome name="random" size={24} color="white" />
+          ),
+          drawerLabelStyle: { color: "white", fontSize: 18 },
+          // drawerActiveBackgroundColor: "white",
+          drawerActiveTintColor: "white",
+        }}
+      /> */}
+
       {/* <Drawer.Screen
         name="الصكات المحفوظة"
         component={BalotGamesHistory}
