@@ -67,10 +67,10 @@ const AppNavigator = () => {
         </Drawer.Screen>
         <Drawer.Screen
           name="دقة الولد"
-          component={RandomPlayersNavigator}
+          // component={RandomPlayersNavigator}
           options={{
             headerStyle: {
-              backgroundColor: "#004582",
+              backgroundColor: darkMode ? "black" : "#004582",
             },
             headerTitleStyle: { color: "white", fontSize: 20 },
             drawerIcon: () => (
@@ -80,7 +80,15 @@ const AppNavigator = () => {
             // drawerActiveBackgroundColor: "white",
             drawerActiveTintColor: "white",
           }}
-        />
+        >
+          {() => <RandomPlayersNavigator darkMode={darkMode} />}
+          {/* {() => (
+            <RandomPlayersNavigator
+              darkMode={darkMode}
+              setdarkMode={setdarkMode}
+            />
+          )} */}
+        </Drawer.Screen>
         {/* <Drawer.Screen
         name="Settings"
         component={RandomPlayersNavigator}

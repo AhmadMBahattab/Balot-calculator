@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ResetComponent from "./ResetComponent";
 import Setting from "./settings/Settings";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -25,6 +25,28 @@ const NavBar = ({ resetScores, backOneStep, darkMode, setdarkMode }) => {
   const [sittengVisible, setsittengVisible] = useState(false);
   const [isEnabled, setIsEnabled] = useState(true);
 
+  useEffect(() => {
+    // const changeDarkeModeState = async () => {
+    //   try {
+    //     if (darkMode == false) {
+    //       const darkModeState = await AsyncStorage.setItem(
+    //         "darkModeState",
+    //         true
+    //       );
+    //     }
+    //     if (darkMode == true) {
+    //       const darkModeState = await AsyncStorage.setItem(
+    //         "darkModeState",
+    //         false
+    //       );
+    //     }
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
+    // changeDarkeModeState();
+  }, []);
+
   const toggleResetOverlay = () => {
     setVisible(!visible);
   };
@@ -37,6 +59,7 @@ const NavBar = ({ resetScores, backOneStep, darkMode, setdarkMode }) => {
     setIsEnabled((previousState) => !previousState);
     setdarkMode(!darkMode);
   };
+
   return (
     <>
       <ResetComponent

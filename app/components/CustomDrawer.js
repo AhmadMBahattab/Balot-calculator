@@ -13,7 +13,6 @@ import {
 import { Feather } from "@expo/vector-icons";
 
 const CustomDrawer = (props) => {
-  console.log(props.darkMode);
   return (
     <View
       style={[

@@ -15,7 +15,7 @@ const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 const Background = require("../assets/2222.png");
 
-const quickRandomPlayersScreen = () => {
+const QuickRandomPlayersScreen = () => {
   const navigation = useNavigation();
   const [visible, setVisible] = useState(false);
   const [playersArray, setplayersArray] = useState([]);
@@ -157,4 +157,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default quickRandomPlayersScreen;
+export default QuickRandomPlayersScreen;
