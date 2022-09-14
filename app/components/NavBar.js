@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ResetComponent from "./ResetComponent";
 import Setting from "./settings/Settings";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   StyleSheet,
   Text,
@@ -19,7 +20,7 @@ const statusBarHight = StatusBar.currentHeight;
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const NavBar = ({ resetScores, backOneStep }) => {
+const NavBar = ({ resetScores, backOneStep, darkMode, setdarkMode }) => {
   const [visible, setVisible] = useState(false);
   const [sittengVisible, setsittengVisible] = useState(false);
   const [isEnabled, setIsEnabled] = useState(true);
@@ -34,6 +35,7 @@ const NavBar = ({ resetScores, backOneStep }) => {
 
   const toggleSwitch = () => {
     setIsEnabled((previousState) => !previousState);
+    setdarkMode(!darkMode);
   };
   return (
     <>
@@ -42,7 +44,12 @@ const NavBar = ({ resetScores, backOneStep }) => {
         resetScores={resetScores}
         toggleOverlay={toggleResetOverlay}
       />
-      <View style={styles.navBar}>
+      <View
+        style={[
+          styles.navBar,
+          { backgroundColor: darkMode ? "black" : "#004582" },
+        ]}
+      >
         <View style={styles.navBarInfo}>
           <View style={styles.navBarButtons}>
             <TouchableOpacity onPress={backOneStep}>
@@ -96,6 +103,7 @@ const NavBar = ({ resetScores, backOneStep }) => {
     </>
   );
 };
+
 const styles = StyleSheet.create({
   navBar: {
     padding: 20,

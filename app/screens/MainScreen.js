@@ -23,7 +23,7 @@ import ScoresContainer from "../components/ScoresContainer";
 import ResetComponent from "../components/ResetComponent";
 
 const background = require("../assets/2222.png");
-const MainScreen = () => {
+const MainScreen = ({ darkMode, setdarkMode }) => {
   const [visible, setVisible] = useState(true);
   const [firstTeamScoreArray, setfirstTeamScoreArray] = useState([0]);
   const [secondTeamScoreArray, setsecondTeamScoreArray] = useState([0]);
@@ -326,6 +326,8 @@ const MainScreen = () => {
             visible={visible}
             resetScores={resetScores}
             toggleOverlay={toggleOverlay}
+            darkMode={darkMode}
+            setdarkMode={setdarkMode}
           />
         </>
       ) : null}
@@ -336,26 +338,49 @@ const MainScreen = () => {
         imageStyle={{ opacity: 0.1 }}
       > */}
       <View style={styles.container}>
-        <NavBar resetScores={resetScores} backOneStep={backOneStep} />
+        <NavBar
+          resetScores={resetScores}
+          backOneStep={backOneStep}
+          darkMode={darkMode}
+          setdarkMode={setdarkMode}
+        />
         <ScoresInput
           firstPoint={firstPoint}
           secondPoint={secondPoint}
           remainWinScore={remainWinScore}
           addScore={addScore}
+          darkMode={darkMode}
+          setdarkMode={setdarkMode}
         />
         {/* <ScoresStatusBar /> */}
-        <ScoresContainer combinedScores={combinedScores} />
+        <ScoresContainer
+          combinedScores={combinedScores}
+          darkMode={darkMode}
+          setdarkMode={setdarkMode}
+        />
         {combinedScores.length === 0 && keyboard.keyboardShown == false ? (
-          <View style={styles.randomPlayersButton}>
+          <View
+            style={[
+              styles.randomPlayersButton,
+              { backgroundColor: darkMode ? "black" : null },
+            ]}
+          >
             <FAB
               visible={visible}
               title="دقة ولد "
               upperCase
-              icon={<FontAwesome name="random" size={22} color="white" />}
-              color={"#004582"}
+              icon={
+                <FontAwesome
+                  name="random"
+                  size={22}
+                  color={darkMode ? "black" : "white"}
+                />
+              }
+              color={darkMode ? "white" : "#004582"}
               onPress={() => {
                 navigation.navigate("دقة الولد");
               }}
+              titleStyle={{ color: darkMode ? "black" : "white" }}
             />
             <Text></Text>
           </View>
@@ -370,7 +395,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   randomPlayersButton: {
-    margin: 15,
+    padding: 10,
+    paddingBottom: 15,
     justifyContent: "space-between",
     flexDirection: "row",
   },
