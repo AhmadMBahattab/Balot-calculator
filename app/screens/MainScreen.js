@@ -319,74 +319,77 @@ const MainScreen = ({ darkMode, setdarkMode }) => {
 
   return (
     <>
-      {totalLastScoreA(firstTeamScoreArray) >= 152 ||
-      totalLastScoreB(secondTeamScoreArray) >= 152 ? (
+      {darkMode == true || darkMode == false ? (
         <>
-          <ResetComponent
-            visible={visible}
-            resetScores={resetScores}
-            toggleOverlay={toggleOverlay}
-            darkMode={darkMode}
-            setdarkMode={setdarkMode}
-          />
-        </>
-      ) : null}
-      {/* <ImageBackground
+          {totalLastScoreA(firstTeamScoreArray) >= 152 ||
+          totalLastScoreB(secondTeamScoreArray) >= 152 ? (
+            <>
+              <ResetComponent
+                visible={visible}
+                resetScores={resetScores}
+                toggleOverlay={toggleOverlay}
+                darkMode={darkMode}
+              />
+            </>
+          ) : null}
+          {/* <ImageBackground
         source={background}
         style={{ width: "100%", height: 1000, opacity: 1 }}
         resizeMode="repeat"
         imageStyle={{ opacity: 0.1 }}
       > */}
-      <View style={styles.container}>
-        <NavBar
-          resetScores={resetScores}
-          backOneStep={backOneStep}
-          darkMode={darkMode}
-          setdarkMode={setdarkMode}
-        />
-        <ScoresInput
-          firstPoint={firstPoint}
-          secondPoint={secondPoint}
-          remainWinScore={remainWinScore}
-          addScore={addScore}
-          darkMode={darkMode}
-          setdarkMode={setdarkMode}
-        />
-        {/* <ScoresStatusBar /> */}
-        <ScoresContainer
-          combinedScores={combinedScores}
-          darkMode={darkMode}
-          setdarkMode={setdarkMode}
-        />
-        {combinedScores.length === 0 && keyboard.keyboardShown == false ? (
-          <View
-            style={[
-              styles.randomPlayersButton,
-              { backgroundColor: darkMode ? "black" : null },
-            ]}
-          >
-            <FAB
-              visible={visible}
-              title="دقة ولد "
-              upperCase
-              icon={
-                <FontAwesome
-                  name="random"
-                  size={22}
-                  color={darkMode ? "black" : "white"}
-                />
-              }
-              color={darkMode ? "white" : "#004582"}
-              onPress={() => {
-                navigation.navigate("دقة الولد");
-              }}
-              titleStyle={{ color: darkMode ? "black" : "white" }}
+          <View style={styles.container}>
+            <NavBar
+              resetScores={resetScores}
+              backOneStep={backOneStep}
+              darkMode={darkMode}
+              setdarkMode={setdarkMode}
             />
-            <Text></Text>
+            <ScoresInput
+              firstPoint={firstPoint}
+              secondPoint={secondPoint}
+              remainWinScore={remainWinScore}
+              addScore={addScore}
+              darkMode={darkMode}
+              setdarkMode={setdarkMode}
+            />
+            {/* <ScoresStatusBar /> */}
+            <ScoresContainer
+              combinedScores={combinedScores}
+              darkMode={darkMode}
+              setdarkMode={setdarkMode}
+            />
+            {combinedScores.length === 0 && keyboard.keyboardShown == false ? (
+              <View
+                style={[
+                  styles.randomPlayersButton,
+                  { backgroundColor: darkMode ? "black" : null },
+                ]}
+              >
+                <FAB
+                  visible={visible}
+                  title="دقة ولد "
+                  upperCase
+                  icon={
+                    <FontAwesome
+                      name="random"
+                      size={22}
+                      color={darkMode ? "black" : "white"}
+                    />
+                  }
+                  color={darkMode ? "white" : "#004582"}
+                  onPress={() => {
+                    navigation.navigate("دقة الولد");
+                  }}
+                  titleStyle={{ color: darkMode ? "black" : "white" }}
+                />
+                <Text></Text>
+              </View>
+            ) : null}
           </View>
-        ) : null}
-      </View>
-      {/* </ImageBackground> */}
+          {/* </ImageBackground> */}
+        </>
+      ) : null}
     </>
   );
 };

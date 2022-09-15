@@ -23,7 +23,6 @@ const windowHeight = Dimensions.get("window").height;
 const NavBar = ({ resetScores, backOneStep, darkMode, setdarkMode }) => {
   const [visible, setVisible] = useState(false);
   const [sittengVisible, setsittengVisible] = useState(false);
-  const [isEnabled, setIsEnabled] = useState(true);
 
   useEffect(() => {
     // const changeDarkeModeState = async () => {
@@ -55,9 +54,17 @@ const NavBar = ({ resetScores, backOneStep, darkMode, setdarkMode }) => {
     setsittengVisible(!sittengVisible);
   };
 
-  const toggleSwitch = () => {
-    setIsEnabled((previousState) => !previousState);
-    setdarkMode(!darkMode);
+  const toggleSwitch = async () => {
+    try {
+      const stringDarkMode = JSON.stringify(!darkMode);
+      await AsyncStorage.setItem("darkModeState", stringDarkMode);
+      const cheackDarkModdExist = await AsyncStorage.getItem("darkModeState");
+
+      console.log(cheackDarkModdExist);
+      const toBoolean = Boolean(cheackDarkModdExist);
+
+      setdarkMode(!darkMode);
+    } catch (error) {}
   };
 
   return (
@@ -99,11 +106,11 @@ const NavBar = ({ resetScores, backOneStep, darkMode, setdarkMode }) => {
             حاسبة بلوت الاستو
           </Text>
           <Switch
-            trackColor={{ false: "#767577", true: "#81b0ff" }}
-            thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-            ios_backgroundColor="#3e3e3e"
+            trackColor={{ true: "#767577", false: "white" }}
+            thumbColor={!darkMode ? "#f5dd4b" : "#f4f3f4"}
+            ios_backgroundColor="white"
             onValueChange={toggleSwitch}
-            value={isEnabled}
+            value={darkMode}
           />
           {/* <TouchableOpacity onPress={toggleSittingOverlay}>
             <View>

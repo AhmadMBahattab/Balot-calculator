@@ -7,7 +7,7 @@ import { Button, Overlay } from "react-native-elements";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const ResetComponent = ({ resetScores, toggleOverlay, visible }) => {
+const ResetComponent = ({ resetScores, toggleOverlay, visible, darkMode }) => {
   return (
     <Overlay
       isVisible={visible}
@@ -34,7 +34,7 @@ const ResetComponent = ({ resetScores, toggleOverlay, visible }) => {
                 resetScores(), toggleOverlay();
               }}
               buttonStyle={{
-                backgroundColor: "#004582",
+                backgroundColor: darkMode ? "black" : "#004582",
                 borderRadius: 5,
               }}
             />

@@ -199,8 +199,12 @@ const RandomPlayersScreen = ({ darkMode }) => {
           </Text>
         </View>
       </TouchableOpacity>
-      <Overlay isVisible={visible} style={{ backgroundColor: "#004582" }}>
-        <RandomTeamsContainer teams={teams} toggleOverlay={toggleOverlay} />
+      <Overlay isVisible={visible} animationType="slide">
+        <RandomTeamsContainer
+          teams={teams}
+          toggleOverlay={toggleOverlay}
+          darkMode={darkMode}
+        />
       </Overlay>
     </View>
   );
