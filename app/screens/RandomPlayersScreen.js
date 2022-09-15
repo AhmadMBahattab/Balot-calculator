@@ -212,6 +212,7 @@ const styles = StyleSheet.create({
   },
   quickButton: {
     margin: 20,
+    marginBottom: 40,
     justifyContent: "center",
     alignItems: "center",
     height: 40,
