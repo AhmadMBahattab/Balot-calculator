@@ -319,7 +319,7 @@ const MainScreen = ({ darkMode, setdarkMode }) => {
 
   return (
     <>
-      {darkMode == true || darkMode == false ? (
+      {darkMode === true || darkMode === false ? (
         <>
           {totalLastScoreA(firstTeamScoreArray) >= 152 ||
           totalLastScoreB(secondTeamScoreArray) >= 152 ? (

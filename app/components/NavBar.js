@@ -24,27 +24,7 @@ const NavBar = ({ resetScores, backOneStep, darkMode, setdarkMode }) => {
   const [visible, setVisible] = useState(false);
   const [sittengVisible, setsittengVisible] = useState(false);
 
-  useEffect(() => {
-    // const changeDarkeModeState = async () => {
-    //   try {
-    //     if (darkMode == false) {
-    //       const darkModeState = await AsyncStorage.setItem(
-    //         "darkModeState",
-    //         true
-    //       );
-    //     }
-    //     if (darkMode == true) {
-    //       const darkModeState = await AsyncStorage.setItem(
-    //         "darkModeState",
-    //         false
-    //       );
-    //     }
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // };
-    // changeDarkeModeState();
-  }, []);
+  useEffect(() => {}, []);
 
   const toggleResetOverlay = () => {
     setVisible(!visible);
@@ -56,14 +36,17 @@ const NavBar = ({ resetScores, backOneStep, darkMode, setdarkMode }) => {
 
   const toggleSwitch = async () => {
     try {
-      const stringDarkMode = JSON.stringify(!darkMode);
-      await AsyncStorage.setItem("darkModeState", stringDarkMode);
+      setdarkMode(!darkMode);
+
+      if (darkMode === false) {
+        AsyncStorage.setItem("darkModeState", JSON.stringify(true));
+      } else {
+        AsyncStorage.setItem("darkModeState", JSON.stringify(false));
+      }
+
       const cheackDarkModdExist = await AsyncStorage.getItem("darkModeState");
 
-      console.log(cheackDarkModdExist);
-      const toBoolean = Boolean(cheackDarkModdExist);
-
-      setdarkMode(!darkMode);
+      console.log("toggle", cheackDarkModdExist, typeof cheackDarkModdExist);
     } catch (error) {}
   };
 

@@ -20,24 +20,27 @@ import {
 } from "@expo/vector-icons";
 import RandomPlayersNavigator from "./RandomPlayersNavigator";
 import BalotGamesHistory from "../screens/BalotGamesHistory";
+import { Value } from "react-native-reanimated";
 
 const Drawer = createDrawerNavigator();
 const AppNavigator = () => {
-  const [darkMode, setdarkMode] = useState(null);
+  const [darkMode, setdarkMode] = useState(false);
+  // const [testDarkMode, settestDarkMode] = useState(null);
 
   useEffect(() => {
-    async function setDarkeMode() {
-      let darkModeState = await AsyncStorage.getItem("darkModeState");
-      console.log("From appNav", darkModeState);
-      const toBoolean = Boolean(darkModeState);
-      setdarkMode(toBoolean);
+    async function DarkeMode() {
+      const value = await AsyncStorage.getItem("darkModeState");
+      const booleanValue = value === "true";
+      console.log("From appNav", value);
+      setdarkMode(booleanValue);
+      return booleanValue;
     }
-    setDarkeMode();
+    DarkeMode();
   }, []);
 
   return (
     <>
-      {darkMode == true || darkMode == false ? (
+      {darkMode === true || darkMode === false ? (
         <>
           <SafeAreaView
             style={{ backgroundColor: darkMode ? "black" : "#004582" }}
