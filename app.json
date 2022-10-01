@@ -2,7 +2,7 @@
   "expo": {
     "name": "حاسبة بلوت الاستو",
     "slug": "Balot-calculator",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "orientation": "portrait",
     "icon": "./app/assets/icons8-calculator-50.png",
     "splash": {
