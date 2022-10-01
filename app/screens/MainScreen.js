@@ -23,7 +23,7 @@ import ScoresContainer from "../components/ScoresContainer";
 import ResetComponent from "../components/ResetComponent";
 
 const background = require("../assets/2222.png");
-const MainScreen = () => {
+const MainScreen = ({ darkMode, setdarkMode }) => {
   const [visible, setVisible] = useState(true);
   const [firstTeamScoreArray, setfirstTeamScoreArray] = useState([0]);
   const [secondTeamScoreArray, setsecondTeamScoreArray] = useState([0]);
@@ -319,49 +319,77 @@ const MainScreen = () => {
 
   return (
     <>
-      {totalLastScoreA(firstTeamScoreArray) >= 152 ||
-      totalLastScoreB(secondTeamScoreArray) >= 152 ? (
+      {darkMode === true || darkMode === false ? (
         <>
-          <ResetComponent
-            visible={visible}
-            resetScores={resetScores}
-            toggleOverlay={toggleOverlay}
-          />
-        </>
-      ) : null}
-      {/* <ImageBackground
+          {totalLastScoreA(firstTeamScoreArray) >= 152 ||
+          totalLastScoreB(secondTeamScoreArray) >= 152 ? (
+            <>
+              <ResetComponent
+                visible={visible}
+                resetScores={resetScores}
+                toggleOverlay={toggleOverlay}
+                darkMode={darkMode}
+              />
+            </>
+          ) : null}
+          {/* <ImageBackground
         source={background}
         style={{ width: "100%", height: 1000, opacity: 1 }}
         resizeMode="repeat"
         imageStyle={{ opacity: 0.1 }}
       > */}
-      <View style={styles.container}>
-        <NavBar resetScores={resetScores} backOneStep={backOneStep} />
-        <ScoresInput
-          firstPoint={firstPoint}
-          secondPoint={secondPoint}
-          remainWinScore={remainWinScore}
-          addScore={addScore}
-        />
-        {/* <ScoresStatusBar /> */}
-        <ScoresContainer combinedScores={combinedScores} />
-        {combinedScores.length === 0 && keyboard.keyboardShown == false ? (
-          <View style={styles.randomPlayersButton}>
-            <FAB
-              visible={visible}
-              title="دقة ولد "
-              upperCase
-              icon={<FontAwesome name="random" size={22} color="white" />}
-              color={"#004582"}
-              onPress={() => {
-                navigation.navigate("دقة الولد");
-              }}
+          <View style={styles.container}>
+            <NavBar
+              resetScores={resetScores}
+              backOneStep={backOneStep}
+              darkMode={darkMode}
+              setdarkMode={setdarkMode}
             />
-            <Text></Text>
+            <ScoresInput
+              firstPoint={firstPoint}
+              secondPoint={secondPoint}
+              remainWinScore={remainWinScore}
+              addScore={addScore}
+              darkMode={darkMode}
+              setdarkMode={setdarkMode}
+            />
+            {/* <ScoresStatusBar /> */}
+            <ScoresContainer
+              combinedScores={combinedScores}
+              darkMode={darkMode}
+              setdarkMode={setdarkMode}
+            />
+            {combinedScores.length === 0 && keyboard.keyboardShown == false ? (
+              <View
+                style={[
+                  styles.randomPlayersButton,
+                  { backgroundColor: darkMode ? "black" : null },
+                ]}
+              >
+                <FAB
+                  visible={visible}
+                  title="دقة ولد "
+                  upperCase
+                  icon={
+                    <FontAwesome
+                      name="random"
+                      size={22}
+                      color={darkMode ? "black" : "white"}
+                    />
+                  }
+                  color={darkMode ? "white" : "#004582"}
+                  onPress={() => {
+                    navigation.navigate("دقة الولد");
+                  }}
+                  titleStyle={{ color: darkMode ? "black" : "white" }}
+                />
+                <Text></Text>
+              </View>
+            ) : null}
           </View>
-        ) : null}
-      </View>
-      {/* </ImageBackground> */}
+          {/* </ImageBackground> */}
+        </>
+      ) : null}
     </>
   );
 };
@@ -370,7 +398,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   randomPlayersButton: {
-    margin: 15,
+    padding: 10,
+    paddingBottom: 15,
     justifyContent: "space-between",
     flexDirection: "row",
   },

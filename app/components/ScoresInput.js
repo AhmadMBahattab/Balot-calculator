@@ -9,7 +9,14 @@ import * as Localization from "expo-localization";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const ScoresInput = ({ firstPoint, secondPoint, remainWinScore, addScore }) => {
+const ScoresInput = ({
+  firstPoint,
+  secondPoint,
+  remainWinScore,
+  addScore,
+  darkMode,
+  setdarkMode,
+}) => {
   const [visible, setVisible] = useState(true);
   const [firstScore, setfirstScore] = useState(0);
   const [secondScore, setsecondScore] = useState(0);
@@ -20,22 +27,41 @@ const ScoresInput = ({ firstPoint, secondPoint, remainWinScore, addScore }) => {
   };
 
   return (
-    <View style={styles.scoreInputContainer}>
+    <View
+      style={[
+        styles.scoreInputContainer,
+        { backgroundColor: darkMode ? "black" : null },
+      ]}
+    >
       {Localization.locale.startsWith("en") ? (
         <>
-          <View style={styles.singleScoreInfoContainer}>
-            <Text style={styles.textInfo}>لهم</Text>
+          <View
+            style={[
+              styles.singleScoreInfoContainer,
+              { backgroundColor: darkMode ? "black" : null },
+            ]}
+          >
+            <Text
+              style={[styles.textInfo, { color: darkMode ? "white" : null }]}
+            >
+              لهم
+            </Text>
             <Text></Text>
-            {firstPoint == secondPoint ? (
+            {firstPoint == secondPoint && darkMode === false ? (
               <Text style={[styles.textInfo, { color: "black" }]}>
                 {firstPoint}
               </Text>
-            ) : firstPoint > secondPoint ? (
+            ) : firstPoint > secondPoint && darkMode === false ? (
               <Text style={[styles.textInfo, { color: "green" }]}>
                 {firstPoint}
               </Text>
             ) : (
-              <Text style={[styles.textInfo, { color: "red" }]}>
+              <Text
+                style={[
+                  styles.textInfo,
+                  { color: !darkMode ? "red" : "white" },
+                ]}
+              >
                 {firstPoint}
               </Text>
             )}
@@ -46,19 +72,39 @@ const ScoresInput = ({ firstPoint, secondPoint, remainWinScore, addScore }) => {
               onChangeText={(value) => setfirstScore(value)}
               value={firstScore}
               maxLength={3}
+              style={{ color: darkMode ? "white" : null }}
             />
           </View>
-          <View style={styles.singleScoreInfoContainer}>
-            <Text style={styles.singleScoreInfo}>الباقي</Text>
-            <Text style={[styles.singleScoreInfo, { color: "#005EBF" }]}>
+          <View
+            style={[
+              styles.singleScoreInfoContainer,
+              { backgroundColor: darkMode ? "black" : null },
+            ]}
+          >
+            <Text
+              style={[
+                styles.singleScoreInfo,
+                { color: darkMode ? "white" : null },
+              ]}
+            >
+              الباقي
+            </Text>
+            <Text
+              style={[
+                styles.singleScoreInfo,
+
+                { color: darkMode ? "white" : "#005EBF" },
+              ]}
+            >
               {remainWinScore}
             </Text>
             <TouchableOpacity style={styles.singleScoreInfo}>
               <FAB
                 visible={visible}
                 style={{ marginTop: 10 }}
-                icon={{ name: "add", color: "white" }}
-                color="#004582"
+                icon={{ name: "add", color: darkMode ? "black" : "white" }}
+                // color="#004582"
+                color={darkMode ? "white" : "#004582"}
                 onPress={() => {
                   addScore(firstScore, secondScore),
                     resetPoints(firstScore, secondScore);
@@ -67,18 +113,27 @@ const ScoresInput = ({ firstPoint, secondPoint, remainWinScore, addScore }) => {
             </TouchableOpacity>
           </View>
           <View style={styles.singleScoreInfoContainer}>
-            <Text style={styles.textInfo}>لنا</Text>
+            <Text
+              style={[styles.textInfo, { color: darkMode ? "white" : "black" }]}
+            >
+              لنا
+            </Text>
             <Text></Text>
-            {secondPoint == firstPoint ? (
+            {secondPoint == firstPoint && darkMode === false ? (
               <Text style={[styles.textInfo, { color: "black" }]}>
                 {secondPoint}
               </Text>
-            ) : secondPoint > firstPoint ? (
+            ) : secondPoint > firstPoint && darkMode === false ? (
               <Text style={[styles.textInfo, { color: "green" }]}>
                 {secondPoint}
               </Text>
             ) : (
-              <Text style={[styles.textInfo, { color: "red" }]}>
+              <Text
+                style={[
+                  styles.textInfo,
+                  { color: !darkMode ? "red" : "white" },
+                ]}
+              >
                 {secondPoint}
               </Text>
             )}
@@ -88,25 +143,46 @@ const ScoresInput = ({ firstPoint, secondPoint, remainWinScore, addScore }) => {
               onChangeText={(value) => setsecondScore(value)}
               value={secondScore}
               maxLength={3}
-              
+              style={{ color: darkMode ? "white" : "black" }}
             />
           </View>
         </>
       ) : (
         <>
-          <View style={styles.singleScoreInfoContainer}>
-            <Text style={styles.textInfo}>لنا</Text>
+          <View
+            style={[
+              styles.singleScoreInfoContainer,
+              { backgroundColor: darkMode ? "black" : null },
+            ]}
+          >
+            <Text
+              style={[styles.textInfo, { color: darkMode ? "white" : "black" }]}
+            >
+              لنا
+            </Text>
             <Text></Text>
             {firstPoint == secondPoint ? (
-              <Text style={[styles.textInfo, { color: "black" }]}>
+              <Text
+                style={[
+                  styles.textInfo,
+                  { color: darkMode ? "white" : "black" },
+                ]}
+              >
                 {firstPoint}
               </Text>
             ) : firstPoint > secondPoint ? (
-              <Text style={[styles.textInfo, { color: "green" }]}>
+              <Text
+                style={[
+                  styles.textInfo,
+                  { color: darkMode ? "white" : "green" },
+                ]}
+              >
                 {firstPoint}
               </Text>
             ) : (
-              <Text style={[styles.textInfo, { color: "red" }]}>
+              <Text
+                style={[styles.textInfo, { color: darkMode ? "white" : "red" }]}
+              >
                 {firstPoint}
               </Text>
             )}
@@ -117,11 +193,25 @@ const ScoresInput = ({ firstPoint, secondPoint, remainWinScore, addScore }) => {
               onChangeText={(value) => setfirstScore(value)}
               value={firstScore}
               maxLength={3}
+              style={{ color: darkMode ? "white" : "black" }}
             />
           </View>
           <View style={styles.singleScoreInfoContainer}>
-            <Text style={styles.singleScoreInfo}>الباقي</Text>
-            <Text style={[styles.singleScoreInfo, { color: "#005EBF" }]}>
+            <Text
+              style={[
+                styles.singleScoreInfo,
+                { color: darkMode ? "white" : "black" },
+              ]}
+            >
+              الباقي
+            </Text>
+            <Text
+              style={[
+                styles.singleScoreInfo,
+
+                { color: darkMode ? "white" : "#005EBF" },
+              ]}
+            >
               {remainWinScore}
             </Text>
             <TouchableOpacity style={styles.singleScoreInfo}>
@@ -138,18 +228,34 @@ const ScoresInput = ({ firstPoint, secondPoint, remainWinScore, addScore }) => {
             </TouchableOpacity>
           </View>
           <View style={styles.singleScoreInfoContainer}>
-            <Text style={styles.textInfo}>لهم</Text>
+            <Text
+              style={[styles.textInfo, { color: darkMode ? "white" : "black" }]}
+            >
+              لهم
+            </Text>
             <Text></Text>
             {secondPoint == firstPoint ? (
-              <Text style={[styles.textInfo, { color: "black" }]}>
+              <Text
+                style={[
+                  styles.textInfo,
+                  { color: darkMode ? "white" : "black" },
+                ]}
+              >
                 {secondPoint}
               </Text>
             ) : secondPoint > firstPoint ? (
-              <Text style={[styles.textInfo, { color: "green" }]}>
+              <Text
+                style={[
+                  styles.textInfo,
+                  { color: darkMode ? "white" : "green" },
+                ]}
+              >
                 {secondPoint}
               </Text>
             ) : (
-              <Text style={[styles.textInfo, { color: "red" }]}>
+              <Text
+                style={[styles.textInfo, { color: darkMode ? "white" : "red" }]}
+              >
                 {secondPoint}
               </Text>
             )}
@@ -159,6 +265,7 @@ const ScoresInput = ({ firstPoint, secondPoint, remainWinScore, addScore }) => {
               onChangeText={(value) => setsecondScore(value)}
               value={secondScore}
               maxLength={3}
+              style={{ color: darkMode ? "white" : "black" }}
             />
           </View>
         </>

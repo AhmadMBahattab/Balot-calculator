@@ -14,7 +14,8 @@ import RandomTeamsContainer from "../components/randomTeamsContainer";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const RandomPlayersScreen = () => {
+const RandomPlayersScreen = ({ darkMode }) => {
+  console.log(darkMode);
   const [playersArray, setplayersArray] = useState([]);
   const [playerName, setplayerName] = useState("");
   const [visible, setVisible] = useState(false);
@@ -73,8 +74,18 @@ const RandomPlayersScreen = () => {
   };
 
   return (
-    <View style={{ height: windowHeight / 1.1 }}>
-      <View style={styles.setTeamsButtonContainer}>
+    <View
+      style={{
+        height: windowHeight / 1.1,
+        backgroundColor: darkMode ? "black" : null,
+      }}
+    >
+      <View
+        style={[
+          styles.setTeamsButtonContainer,
+          { backgroundColor: darkMode ? "black" : null },
+        ]}
+      >
         <TouchableOpacity
           onPress={setTeamsRandom}
           disabled={playersArray.length < 4 ? true : false}
@@ -84,21 +95,42 @@ const RandomPlayersScreen = () => {
               styles.chooseTeamesButton,
               {
                 backgroundColor:
-                  playersArray.length < 4 ? "#496883" : "#004582",
+                  darkMode == false && playersArray.length < 4
+                    ? "#496883"
+                    : darkMode == false && playersArray.length >= 4
+                    ? "#004582"
+                    : darkMode == true && playersArray.length < 4
+                    ? "#CBCBCB"
+                    : darkMode == true && playersArray.length >= 4
+                    ? "white"
+                    : null,
               },
             ]}
           >
-            <Text style={{ color: "white", fontSize: 18 }}>دقة الولد</Text>
+            <Text
+              style={{
+                color: darkMode ? "black" : "white",
+                fontSize: 18,
+                fontWeight: "bold",
+              }}
+            >
+              دقة الولد
+            </Text>
           </View>
         </TouchableOpacity>
       </View>
 
-      <View style={styles.playersNamesContainer}>
+      <View
+        style={[
+          styles.playersNamesContainer,
+          { backgroundColor: darkMode ? "black" : null },
+        ]}
+      >
         <View style={{ width: "80%" }}>
           <Input
             placeholder="الاسم..."
             textAlign="right"
-            style={{ color: "gray" }}
+            style={{ color: darkMode ? "white" : "gray" }}
             onChangeText={(name) => {
               setplayerName(name);
             }}
@@ -109,24 +141,21 @@ const RandomPlayersScreen = () => {
 
         <View style={styles.addNameContainer}>
           <FAB
-            icon={{ name: "add", color: "white" }}
+            icon={{ name: "add", color: darkMode ? "black" : "white" }}
             size="large"
-            color="#004582"
+            color={darkMode ? "white" : "#004582"}
             onPress={addPlayer}
           />
         </View>
       </View>
       <View style={{ padding: 20 }}>
-        <Text>
+        <Text style={{ color: darkMode ? "white" : "black" }}>
           عدد المشاركين :{" "}
           {
             <Text
               style={{
                 fontSize: 16,
-                color:
-                  playersArray.length < 4 || playersArray.length > 10
-                    ? "red"
-                    : "green",
+                color: darkMode ? "white" : "black",
               }}
             >
               {playersArray.length}
@@ -146,7 +175,7 @@ const RandomPlayersScreen = () => {
               <FAB
                 icon={{ name: "delete", color: "white" }}
                 size="small"
-                color="red"
+                color={darkMode ? "black" : "red"}
                 onPress={() => deletePlayer(item)}
               />
             </View>
@@ -159,12 +188,23 @@ const RandomPlayersScreen = () => {
           navigation.navigate("دقة ولد سريعة");
         }}
       >
-        <View style={styles.quickButton}>
-          <Text style={{ color: "white", fontSize: 18 }}>دقة ولد سريعة</Text>
+        <View
+          style={[
+            styles.quickButton,
+            { backgroundColor: darkMode ? "white" : "#004582" },
+          ]}
+        >
+          <Text style={{ color: darkMode ? "black" : "white", fontSize: 18 }}>
+            دقة ولد سريعة
+          </Text>
         </View>
       </TouchableOpacity>
-      <Overlay isVisible={visible} style={{ backgroundColor: "#004582" }}>
-        <RandomTeamsContainer teams={teams} toggleOverlay={toggleOverlay} />
+      <Overlay isVisible={visible} animationType="slide">
+        <RandomTeamsContainer
+          teams={teams}
+          toggleOverlay={toggleOverlay}
+          darkMode={darkMode}
+        />
       </Overlay>
     </View>
   );
@@ -172,11 +212,11 @@ const RandomPlayersScreen = () => {
 
 const styles = StyleSheet.create({
   setTeamsButtonContainer: {
-    marginBottom: 10,
+    paddingBottom: 10,
   },
   quickButton: {
     margin: 20,
-    backgroundColor: "#004582",
+    marginBottom: 40,
     justifyContent: "center",
     alignItems: "center",
     height: 40,

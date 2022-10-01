@@ -14,7 +14,12 @@ import { Feather } from "@expo/vector-icons";
 
 const CustomDrawer = (props) => {
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: props.darkMode ? "black" : "#004582" },
+      ]}
+    >
       <DrawerContentScrollView {...props} style={{ width: "90%" }}>
         <View style={styles.singleItem}>
           <DrawerItemList {...props} />
@@ -34,7 +39,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 10,
-    backgroundColor: "#004582",
   },
   singleItem: {
     paddingTop: 20,

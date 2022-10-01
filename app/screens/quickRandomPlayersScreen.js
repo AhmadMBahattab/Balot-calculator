@@ -15,7 +15,7 @@ const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 const Background = require("../assets/2222.png");
 
-const quickRandomPlayersScreen = () => {
+const QuickRandomPlayersScreen = ({ darkMode }) => {
   const navigation = useNavigation();
   const [visible, setVisible] = useState(false);
   const [playersArray, setplayersArray] = useState([]);
@@ -59,7 +59,7 @@ const quickRandomPlayersScreen = () => {
   };
 
   return (
-    <>
+    <View style={{ backgroundColor: darkMode ? "black" : "white", flex: 1 }}>
       {/* <ImageBackground
         source={Background}
         style={{ width: "100%", height: "100%" }}
@@ -69,37 +69,55 @@ const quickRandomPlayersScreen = () => {
         style={{
           justifyContent: "center",
           alignItems: "center",
-          marginTop: 20,
+          paddingTop: 70,
+          backgroundColor: darkMode ? "black" : "white",
         }}
       >
-        <Text style={{ fontSize: 22 }}>عدد اللاعبين</Text>
+        <Text style={{ fontSize: 22, color: darkMode ? "white" : "black" }}>
+          عدد اللاعبين
+        </Text>
       </View>
-      <View style={styles.playersNumberContainer}>
+      <View
+        style={[
+          styles.playersNumberContainer,
+          { backgroundColor: darkMode ? "black" : null },
+        ]}
+      >
         <View style={styles.playersNumber}>
           <View style={styles.singleComponent}>
             <FAB
-              icon={{ name: "add", color: "white" }}
+              icon={{ name: "add", color: darkMode ? "black" : "white" }}
               size="small"
-              color="#004582"
+              color={darkMode ? "white" : "#004582"}
               onPress={addPlayer}
             />
           </View>
-          <View style={styles.number}>
+          <View
+            style={[
+              styles.number,
+              { backgroundColor: darkMode ? "white" : "#EFEFEF" },
+            ]}
+          >
             <Text style={{ fontSize: 20, fontWeight: "bold" }}>
               {playersNumber}
             </Text>
           </View>
           <View style={styles.singleComponent}>
             <FAB
-              icon={{ name: "cancel", color: "white" }}
+              icon={{ name: "cancel", color: darkMode ? "black" : "white" }}
               size="small"
-              color="red"
+              color={darkMode ? "white" : "red"}
               onPress={deletePlayer}
             />
           </View>
         </View>
       </View>
-      <View style={styles.setTeamsButtonContainer}>
+      <View
+        style={[
+          styles.setTeamsButtonContainer,
+          { backgroundColor: darkMode ? "black" : "white" },
+        ]}
+      >
         <TouchableOpacity
           onPress={setTeamsRandom}
           disabled={playersNumber < 4 ? true : false}
@@ -108,19 +126,39 @@ const quickRandomPlayersScreen = () => {
             style={[
               styles.chooseTeamesButton,
               {
-                backgroundColor: playersNumber < 4 ? "#496883" : "#004582",
+                backgroundColor:
+                  darkMode == false && playersNumber < 4
+                    ? "#496883"
+                    : darkMode == false && playersNumber >= 4
+                    ? "#004582"
+                    : darkMode == true && playersNumber < 4
+                    ? "#CBCBCB"
+                    : darkMode == true && playersNumber >= 4
+                    ? "white"
+                    : null,
               },
             ]}
           >
-            <Text style={{ color: "white", fontSize: 18 }}>دقة الولد</Text>
+            <Text
+              style={{
+                color: darkMode ? "black" : "white",
+                fontSize: 18,
+                fontWeight: "bold",
+              }}
+            >
+              دقة الولد
+            </Text>
           </View>
         </TouchableOpacity>
       </View>
-      <Overlay isVisible={visible} style={{ backgroundColor: "red" }}>
-        <RandomTeamsContainer teams={teams} toggleOverlay={toggleOverlay} />
+      <Overlay isVisible={visible} animationType="slide">
+        <RandomTeamsContainer
+          teams={teams}
+          toggleOverlay={toggleOverlay}
+          darkMode={darkMode}
+        />
       </Overlay>
-      {/* </ImageBackground> */}
-    </>
+    </View>
   );
 };
 
@@ -157,4 +195,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default quickRandomPlayersScreen;
+export default QuickRandomPlayersScreen;

@@ -1,5 +1,13 @@
-import React from "react";
-import { View, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  SafeAreaView,
+  StatusBar,
+} from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import MainScreen from "../screens/MainScreen";
 import RandomPlayersScreen from "../screens/RandomPlayersScreen";
@@ -12,66 +20,95 @@ import {
 } from "@expo/vector-icons";
 import RandomPlayersNavigator from "./RandomPlayersNavigator";
 import BalotGamesHistory from "../screens/BalotGamesHistory";
+import { Value } from "react-native-reanimated";
 
 const Drawer = createDrawerNavigator();
 const AppNavigator = () => {
+  const [darkMode, setdarkMode] = useState(false);
+  // const [testDarkMode, settestDarkMode] = useState(null);
+
+  useEffect(() => {
+    async function DarkeMode() {
+      const value = await AsyncStorage.getItem("darkModeState");
+      const booleanValue = value === "true";
+      console.log("From appNav", value);
+      setdarkMode(booleanValue);
+      return booleanValue;
+    }
+    DarkeMode();
+  }, []);
+
   return (
-    <Drawer.Navigator
-    
-      backBehavior="order"
-      drawerContent={(props) => <CustomDrawer {...props} />}
-      screenOptions={({ navigation }) => ({
-        headerLeft: () => (
-          <TouchableWithoutFeedback onPress={navigation.toggleDrawer}>
-            <View style={styles.drawerButton}>
-              <MaterialCommunityIcons name="menu" size={30} color="white" />
-            </View>
-          </TouchableWithoutFeedback>
-        ),
-      })}
-    >
-      <Drawer.Screen
-        name="الحاسبة"
-        component={MainScreen}
-        options={{
-          headerStyle: {
-            backgroundColor: "#004582",
-          },
-          headerTitleStyle: { color: "white", fontSize: 20 },
-          drawerIcon: () => <AntDesign name="home" size={24} color={"white"} />,
-          drawerLabelStyle: { color: "white", fontSize: 18 },
-          // drawerActiveBackgroundColor: "white",
-          drawerActiveTintColor: "white",
-        }}
-      />
-      <Drawer.Screen
-        name="دقة الولد"
-        component={RandomPlayersNavigator}
-        options={{
-          headerStyle: {
-            backgroundColor: "#004582",
-          },
-          headerTitleStyle: { color: "white", fontSize: 20 },
-          drawerIcon: () => (
-            <FontAwesome name="random" size={24} color="white" />
-          ),
-          drawerLabelStyle: { color: "white", fontSize: 18 },
-          // drawerActiveBackgroundColor: "white",
-          drawerActiveTintColor: "white",
-        }}
-      />
-      {/* <Drawer.Screen
-        name="الصكات المحفوظة"
-        component={BalotGamesHistory}
-        options={{
-          headerStyle: {
-            backgroundColor: "#004582",
-          },
-          headerTitleStyle: { color: "white" },
-          drawerIcon: () => <Fontisto name="history" size={24} color="black" />,
-        }}
-      /> */}
-    </Drawer.Navigator>
+    <>
+      {darkMode === true || darkMode === false ? (
+        <>
+          <SafeAreaView
+            style={{ backgroundColor: darkMode ? "black" : "#004582" }}
+          />
+          <StatusBar backgroundColor={darkMode ? "black" : "#004582"} />
+          <Drawer.Navigator
+            backBehavior="order"
+            drawerContent={(props) => (
+              <CustomDrawer {...props} darkMode={darkMode} />
+            )}
+            screenOptions={({ navigation }) => ({
+              headerLeft: () => (
+                <TouchableWithoutFeedback onPress={navigation.toggleDrawer}>
+                  <View style={styles.drawerButton}>
+                    <MaterialCommunityIcons
+                      name="menu"
+                      size={30}
+                      color="white"
+                    />
+                  </View>
+                </TouchableWithoutFeedback>
+              ),
+            })}
+          >
+            <Drawer.Screen
+              name="الحاسبة"
+              // component={() => {
+              //   return <MainScreen darkMode={darkMode} setdarkMode={setdarkMode} />;
+              // }}
+              options={{
+                headerStyle: {
+                  backgroundColor: darkMode ? "black" : "#004582",
+                },
+                headerTitleStyle: { color: "white", fontSize: 20 },
+                drawerIcon: () => (
+                  <AntDesign name="home" size={24} color={"white"} />
+                ),
+                drawerLabelStyle: { color: "white", fontSize: 18 },
+                // drawerActiveBackgroundColor: "white",
+                drawerActiveTintColor: "white",
+              }}
+            >
+              {() => (
+                <MainScreen darkMode={darkMode} setdarkMode={setdarkMode} />
+              )}
+            </Drawer.Screen>
+            <Drawer.Screen
+              name="دقة الولد"
+              // component={RandomPlayersNavigator}
+              options={{
+                headerStyle: {
+                  backgroundColor: darkMode ? "black" : "#004582",
+                },
+                headerTitleStyle: { color: "white", fontSize: 20 },
+                drawerIcon: () => (
+                  <FontAwesome name="random" size={24} color="white" />
+                ),
+                drawerLabelStyle: { color: "white", fontSize: 18 },
+                // drawerActiveBackgroundColor: "white",
+                drawerActiveTintColor: "white",
+              }}
+            >
+              {() => <RandomPlayersNavigator darkMode={darkMode} />}
+            </Drawer.Screen>
+          </Drawer.Navigator>
+        </>
+      ) : null}
+    </>
   );
 };
 
