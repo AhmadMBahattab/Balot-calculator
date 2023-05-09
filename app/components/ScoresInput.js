@@ -292,11 +292,11 @@ const styles = StyleSheet.create({
   },
   singleScoreInfo: {
     marginVertical: 4,
-    fontSize: 28,
+    fontSize: 26,
   },
 
   textInfo: {
-    fontSize: 32,
+    fontSize: 28,
     justifyContent: "center",
     alignItems: "center",
   },

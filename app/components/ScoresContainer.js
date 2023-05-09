@@ -121,6 +121,9 @@ const styles = StyleSheet.create({
   singleScoreContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
+    borderColor: "#d9d9d9",
+
+    borderBottomWidth: 1,
   },
   singleScoreInfo: {
     backgroundColor: "white",
@@ -136,7 +139,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   scoresFontSize: {
-    fontSize: 22,
+    fontSize: 20,
   },
 });
 
