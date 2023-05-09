@@ -20,7 +20,7 @@ const ScoresContainer = ({ combinedScores, darkMode, setdarkMode }) => {
     <ScrollView
       style={[
         styles.scoresContainer,
-        { backgroundColor: darkMode ? "black" : null },
+        { backgroundColor: darkMode ? "black" : "white" },
       ]}
       ref={scrollViewRef}
       onContentSizeChange={() =>
@@ -113,8 +113,8 @@ const ScoresContainer = ({ combinedScores, darkMode, setdarkMode }) => {
 };
 const styles = StyleSheet.create({
   scoresContainer: {
-    paddingRight: 20,
-    paddingLeft: 20,
+    paddingRight: 5,
+    paddingLeft: 5,
     // marginBottom: 20,
     backgroundColor: "transparent",
   },
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   scoresFontSize: {
-    fontSize: 16,
+    fontSize: 22,
   },
 });
 

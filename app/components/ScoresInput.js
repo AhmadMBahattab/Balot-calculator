@@ -30,7 +30,7 @@ const ScoresInput = ({
     <View
       style={[
         styles.scoreInputContainer,
-        { backgroundColor: darkMode ? "black" : null },
+        { backgroundColor: darkMode ? "black" : "white" },
       ]}
     >
       {Localization.locale.startsWith("en") ? (
@@ -292,11 +292,11 @@ const styles = StyleSheet.create({
   },
   singleScoreInfo: {
     marginVertical: 4,
-    fontSize: 24,
+    fontSize: 28,
   },
 
   textInfo: {
-    fontSize: 24,
+    fontSize: 32,
     justifyContent: "center",
     alignItems: "center",
   },

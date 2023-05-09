@@ -86,7 +86,7 @@ const NavBar = ({ resetScores, backOneStep, darkMode, setdarkMode }) => {
             </TouchableOpacity>
           </View>
           <Text style={{ fontSize: 20, color: "white", fontWeight: "bold" }}>
-            حاسبة بلوت الاستو
+            {/* حاسبة بلوت الاستو */}
           </Text>
           <Switch
             trackColor={{ true: "#767577", false: "white" }}
